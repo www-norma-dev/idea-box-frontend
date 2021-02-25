@@ -216,15 +216,7 @@ export default function SignUp() {
                 color="primary">Facebook
             </Button>
 
-            
-            
-
-            {/* <GoogleButton
-            
-            className={classes.googleButton}
-            type="light" // can be light or dark
-            onClick={() => { console.log('Google button clicked') }}
-            /> */}
+      
 
             <Box mt={5}>
               <Copyright />
