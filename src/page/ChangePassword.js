@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -12,19 +10,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+import Copyright from '../Components/Copyright'
+import ErrorMessage from '../Components/ErrorMessage'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="">
-        Idea Box
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
+
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,43 +39,57 @@ const useStyles = makeStyles((theme) => ({
 export default function ChangePassword() {
   const classes = useStyles()
 
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   //Input Password
   const [password, setPassword] = useState('');
   const [errorPassword, setErrorPassword] = useState(false);
-  const passwordChange = (event) => {
-    setPassword(event.target.value);  
-    if(event.target.value.length > 0)
-        setErrorPassword(false);
-    else
-        setErrorPassword(true);
-  }
-
    //Input confirm Password
    const [confirmPassword, setConfirmPassword] = useState('');
    const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
-   const [confirmHPasswordHint , setConfirmHPasswordHint] = useState('');
 
-   const confirmPasswordChange = (event) => {
-     setConfirmPassword(event.target.value);  
-     if(event.target.value.length > 0)
-        setErrorConfirmPassword(false);
-     else
-        setErrorConfirmPassword(true);
 
-        console.log('pass ' + password);
-        console.log('conf ' + event.target.value);
-    
-     if(password != event.target.value){
-        setConfirmHPasswordHint('Password not the same');
-        setErrorConfirmPassword(true);
-     }
-     else{
-        setConfirmHPasswordHint('');
-        setErrorConfirmPassword(false);
-     }
-        
-   }
+   // Value onChange in password and Confirm Password 
+   const passwordValue = (e) => {
+    setPassword(e.target.value);
+  }
+  const confirmPasswordValue = (e) => {
+    setConfirmPassword(e.target.value);
+  }
+
+
+   // Validate form
+    function validateForm(){
+      if(password == ''){
+        setErrorPassword(true);
+        setShowErrorMessage(true);
+        setErrorMessage('Enter Your Password');
+        return false;
+      }else if(confirmPassword !=  password ){
+          setErrorPassword(false);
+  
+          setErrorConfirmPassword(true);
+          setShowErrorMessage(true);
+          setErrorMessage('Password not the same');
+          return false;
+        } else{
+          setErrorConfirmPassword(false);
+          setShowErrorMessage(false);
+          return true;
+        }
+      
+    }
+
+
+   const sendForm = () => {
+
+    if(validateForm() == true){
+      alert('Send data From APi');
+
+    }
+
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -98,7 +102,7 @@ export default function ChangePassword() {
         Password change
         </Typography>
         <TextField
-              onChange={passwordChange}
+              onChange={passwordValue}
               error={errorPassword}
               helperText=""
               variant="outlined"
@@ -112,8 +116,7 @@ export default function ChangePassword() {
               autoComplete="current-password"
             />
             <TextField
-              helperText={confirmHPasswordHint}
-              onChange={confirmPasswordChange}
+              onChange={confirmPasswordValue}
               error={errorConfirmPassword}
               variant="outlined"
               margin="normal"
@@ -126,8 +129,12 @@ export default function ChangePassword() {
               autoComplete="current-password"
             />
 
+            {showErrorMessage ? <ErrorMessage text={errorMessage}/> : null }
+
+          
 
           <Button
+            onClick={sendForm}
             type="submit"
             fullWidth
             variant="contained"
