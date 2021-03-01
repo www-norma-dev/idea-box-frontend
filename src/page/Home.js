@@ -106,7 +106,15 @@ const Home = props => {
               })}
             >
                 <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={handleDrawerOpen}>
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={handleDrawerOpen}
+                    edge="start"
+                    className={clsx(classes.menuButton, {
+                      [classes.hide]: open,
+                    })}
+                  >
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
