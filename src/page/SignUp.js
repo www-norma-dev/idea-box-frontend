@@ -12,15 +12,18 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import FacebookIcon from '@material-ui/icons/Facebook';
+import GoogleButton from 'react-google-button'
+import './SignUp.css';
+import { FcGoogle } from 'react-icons/fc';
+
+
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" >
-        Idea Box
-      </Link>{' '}
-      {new Date().getFullYear()}
+      <Link color="inherit">Idea Box</Link> {new Date().getFullYear()}
       {'.'}
     </Typography>
   )
@@ -57,9 +60,22 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  facebookButton:{
+    borderRadius: 0,
+    borderRadius: 20,
+    marginTop: 10,
+    width: '80%',
+ },
+ googleButton:{
+    borderRadius: 20,
+    marginTop: 10,
+    backgroundColor : '#f9fafb',
+    width: '80%',
+ },
+
 }))
 
-export default function SignInSide() {
+export default function SignUp() {
   const classes = useStyles()
 
   return (
@@ -72,13 +88,42 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign UP
           </Typography>
-          <Typography component="h1" variant="h5">
-            Idea Box
-          </Typography>
+
+
+
           
           <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                    <Grid item xs={6} md={6}>
+                            <TextField
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="First Name"
+                    name="text"
+                    autoComplete="text"
+                    autoFocus
+                    />
+
+                    </Grid>
+                    <Grid item xs={6} md={6}>
+                        <TextField
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Last Name"
+                        name="text"
+                        autoComplete="text"
+                        autoFocus
+                        />
+                    </Grid>
+            </Grid>
             <TextField
               variant="outlined"
               margin="normal"
@@ -100,10 +145,24 @@ export default function SignInSide() {
               type="password"
               id="password"
               autoComplete="current-password"
+              
+            />
+
+            
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Confirm Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="I agree to the terms of use and privacy policy"
             />
             <Button
               fullWidth
@@ -111,24 +170,58 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/ForgotPassword" variant="body2">
-                  Forgot password?
-                </Link>
+              
               </Grid>
               <Grid item>
-                <Link href="/SignUp" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/Login" variant="body2">
+                  {"Already have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>
+
+            
+           
+          </form>
+
+          <Grid container spacing={0}>
+          <Grid xs={5}><hr /></Grid>
+          <Grid xs={2}><p>OR</p></Grid>
+          <Grid xs={5}><hr /></Grid>
+          
+
+          </Grid>
+
+
+            <Button
+            boxShadow={3}
+            className={classes.googleButton}
+
+                fullWidth
+                variant="contained"
+                startIcon={<FcGoogle/>}
+                color="white">Google
+            </Button>
+
+    
+            <Button
+            boxShadow={3}
+            fullWidth
+                className={classes.facebookButton}
+                variant="contained"
+                startIcon={<FacebookIcon/>}
+                color="primary">Facebook
+            </Button>
+
+      
+
             <Box mt={5}>
               <Copyright />
             </Box>
-          </form>
+          
         </div>
       </Grid>
     </Grid>
