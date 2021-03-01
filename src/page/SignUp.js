@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState} from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -13,21 +13,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import FacebookIcon from '@material-ui/icons/Facebook';
-import GoogleButton from 'react-google-button'
 import './SignUp.css';
 import { FcGoogle } from 'react-icons/fc';
+import Copyright from '../Components/Copyright'
+import ErrorMessage from '../Components/ErrorMessage'
 
 
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit">Idea Box</Link> {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,6 +69,93 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles()
 
+  // First And Last Name
+  const [fullName , setFullName] = useState({
+    firstName: '' ,
+    lastName : '',
+    errorFirstName : false,
+    errorLastName : false,
+    showErrorMessage : false,
+    errorMessage :'',
+  })
+
+  const firstNameChange = (e) => { 
+    setFullName(fullName => {return {...fullName , firstName : e.target.value }})
+  }
+  
+  const lastNameChange = (e) => { 
+    setFullName(fullName => {return {...fullName , lastName : e.target.value }})
+  }
+  // Validate First ans last  Name
+  const validateFullName =() => {
+    if(fullName['firstName'] === ''){
+      setFullName(fullName => {return {...fullName , errorFirstName : true , showErrorMessage : true , errorMessage : "enter Your first Name"}})
+
+    }else {
+      setFullName(fullName => {return {...fullName ,errorFirstName : false , showErrorMessage : false }})
+    }
+  }
+
+
+  // Email 
+  const [email , setEmail] = useState({
+    email : '' ,
+    errorEmail : false,
+    showErrorMessage : false,
+    errorMessage :'',
+  })
+
+  const emailChange = (e) => { setEmail(email => {return {...email ,email : e.target.value }}) }
+
+  const validateEmail = () => {
+    if(email['email'] == ''){
+      setEmail(email => {return {...email , errorEmail : true , showErrorMessage : true , errorMessage : "enter Your Email"}})
+    }else {
+      setEmail(email => {return {...email ,errorEmail : false , showErrorMessage : false }})
+
+    }
+  }
+
+  // Password 
+  const [password , setPassword] = useState({
+    password : '',
+    confirmPassword : '',
+    errorPassword : false,
+    errorConfirmPassword : false,
+    showErrorMessage : false,
+    errorMessage : '',
+  })
+
+  const passwordChange = (e) => { setPassword(password => {return {...password ,password : e.target.value }}) }
+  const confirmPasswordChange = (e) => { setPassword(password => {return {...password , confirmPassword : e.target.value }}) }
+
+  const validatePassword = () => {
+      if(password['password'] == '')
+      {
+        setPassword(password => {return {...password , errorPassword : true , showErrorMessage : true , errorMessage : "enter Your password"}})
+      }else if (password['password'] != password['confirmPassword']){
+
+        setPassword(password => {return {...password ,errorPassword : false, errorConfirmPassword : true , showErrorMessage : true , errorMessage : "confirm your password"}})
+      }
+      else{
+        setPassword(password => {return {...password ,errorPassword : false, errorConfirmPassword : false , showErrorMessage : false}});
+      }
+  }
+
+  //Check box 
+  const [agreeTerms , setAgreeTerms] = useState(false);
+  
+  const agreeChange = () => { setAgreeTerms(!agreeTerms) }
+
+
+
+  const sendForm =() =>{ 
+    validateFullName();
+    validateEmail();
+    validatePassword();
+  }
+
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -89,20 +167,18 @@ export default function SignUp() {
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign UP
-          </Typography>
-
-
-
+          </Typography> 
           
           <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                     <Grid item xs={6} md={6}>
                             <TextField
+                    onChange={firstNameChange}
+                    error={fullName['errorFirstName']}
                     variant="outlined"
                     margin="normal"
                     required
                     fullWidth
-                    id="email"
                     label="First Name"
                     name="text"
                     autoComplete="text"
@@ -112,9 +188,10 @@ export default function SignUp() {
                     </Grid>
                     <Grid item xs={6} md={6}>
                         <TextField
+                        onChange={lastNameChange}
+                        error={fullName['errorLastName']}
                         variant="outlined"
                         margin="normal"
-                        required
                         fullWidth
                         id="email"
                         label="Last Name"
@@ -124,7 +201,10 @@ export default function SignUp() {
                         />
                     </Grid>
             </Grid>
+           { fullName['showErrorMessage'] ?  <ErrorMessage text={fullName['errorMessage']}/>  : null}
             <TextField
+              onChange={emailChange}
+              error={email['errorEmail']}
               variant="outlined"
               margin="normal"
               required
@@ -135,7 +215,10 @@ export default function SignUp() {
               autoComplete="email"
               autoFocus
             />
+           { email['showErrorMessage'] ?  <ErrorMessage text={email['errorMessage']}/>  : null}
             <TextField
+              onChange={passwordChange}
+              error={password['errorPassword']}
               variant="outlined"
               margin="normal"
               required
@@ -144,12 +227,12 @@ export default function SignUp() {
               label="Password"
               type="password"
               id="password"
-              autoComplete="current-password"
-              
+              autoComplete="current-password"              
             />
-
             
             <TextField
+              onChange={confirmPasswordChange}
+              error={password['errorConfirmPassword']}
               variant="outlined"
               margin="normal"
               required
@@ -160,11 +243,15 @@ export default function SignUp() {
               id="password"
               autoComplete="current-password"
             />
+            { password['showErrorMessage']  ? <ErrorMessage text={password['errorMessage'] } /> : null }
+
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" onChange={agreeChange} />}
               label="I agree to the terms of use and privacy policy"
             />
             <Button
+              disabled={!agreeTerms}
+              onClick={sendForm}
               fullWidth
               variant="contained"
               color="primary"
@@ -225,5 +312,7 @@ export default function SignUp() {
         </div>
       </Grid>
     </Grid>
+  
+    
   )
 }
