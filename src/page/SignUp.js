@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import FacebookIcon from '@material-ui/icons/Facebook';
-import GoogleButton from 'react-google-button'
+//import GoogleButton from 'react-google-button'
 import './SignUp.css';
 import { FcGoogle } from 'react-icons/fc';
 
