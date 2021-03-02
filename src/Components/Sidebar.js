@@ -107,7 +107,7 @@ const Sidebar = ({open, setOpen}) => {
         <Divider />
         <List>
           {['Home', 'Code', 'Data'].map((text, index) => (
-            <Link to={"/" + text }>
+            <Link to={"/" + text } key={text}>
                 <ListItem button key={text}>
                   <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                   <ListItemText primary={text} />
