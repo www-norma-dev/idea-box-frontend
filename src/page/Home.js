@@ -5,6 +5,7 @@ import MainAppbar from "../Components/MainAppbar"
 import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import MainContent from '../Components/MainContent'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +25,7 @@ const Home = props => {
             </Paper>
             <Container>
               <Typography>
-                Main content here
+               <MainContent/>
               </Typography>
             </Container>
          </div>
