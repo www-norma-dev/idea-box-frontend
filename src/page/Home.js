@@ -16,21 +16,17 @@ const useStyles = makeStyles((theme) => ({
 const Home = props => {
     const classes = useStyles();
 
-    const contentStyle = {  transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1)' };
-
-    if (this.state.drawerOpen) {
-      contentStyle.marginLeft = 256;
-    }
-
     return (
         <div className={classes.root}>
             <MainAppbar/>
             <Paper>
               <div className={classes.toolbar} />
             </Paper>
-            <div style={contentStyle}>
-              main content here
-            </div>
+            <Container>
+              <Typography>
+                Main content here
+              </Typography>
+            </Container>
          </div>
 
     )
