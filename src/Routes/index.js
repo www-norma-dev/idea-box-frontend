@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import SignInSide from '../page/SignInSide'
 import Home from '../page/Home'
 import SignUp from '../page/SignUp'
+import ChangePassword from '../page/ChangePassword'
 import ForgotPassword from '../page/ForgotPassword'
 
 function Routes() {
@@ -13,8 +14,8 @@ function Routes() {
         <Route path="/home" component={Home} exact />
         <Route path="/login" component={SignInSide} exact />
         <Route path="/SignUp" component={SignUp} exact />
+        <Route path="/ChangePassword" component={ChangePassword} exact />
         <Route path="/ForgotPassword" component={ForgotPassword} exact />
-
       </Switch>
     </Router>
   )
