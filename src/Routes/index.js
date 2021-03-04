@@ -4,6 +4,7 @@ import SignInSide from '../page/SignInSide'
 import Home from '../page/Home'
 import SignUp from '../page/SignUp'
 import ForgotPassword from '../page/ForgotPassword'
+import AllIdea from '../page/AllIdea'
 
 function Routes() {
   return (
@@ -14,6 +15,7 @@ function Routes() {
         <Route path="/login" component={SignInSide} exact />
         <Route path="/SignUp" component={SignUp} exact />
         <Route path="/ForgotPassword" component={ForgotPassword} exact />
+        <Route path="/AllIdea" component={AllIdea} exact />
 
       </Switch>
     </Router>
