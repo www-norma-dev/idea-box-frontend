@@ -6,6 +6,7 @@ import { Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import PostItem from '../Components/PostItem'
+import AddIdea from '../Components/AddIdea'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,12 +35,10 @@ const  MainContent = () =>{
                 </Typography>
             </Grid>
             <Grid item xs={12} sm={12} >
-            <Button variant="contained" color="primary" startIcon={<AddIcon />} style={{margin:20}} >
-                New Idea
-            </Button>
-            <Button variant="outlined" color="primary"  >
-                Your Idea
-            </Button>
+                <AddIdea />
+                <Button variant="outlined" color="primary"  >
+                    Your Idea
+                </Button>
             </Grid>
         </Grid>
 
