@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState} from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -12,19 +12,9 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import Copyright from '../Components/Copyright'
+import ErrorMessage from '../Components/ErrorMessage'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" >
-        Idea Box
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,6 +52,63 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles()
 
+  //Email 
+  const [email , setEmail]= useState('');
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorEmailMessage, setErrorEmailMessage] = useState('');
+
+  // password 
+  const [password, setPassword] = useState('');
+  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorPasswordMessage, setErrorPasswordMessage] = useState('');
+
+  //On Change Input 
+   const emailChange = (e) => { 
+     setEmail(e.target.value);
+    }
+
+   const passwordChange = (e) => {
+     setPassword(e.target.value);
+    }
+
+   //Validate Form 
+
+   const validateForm = () => {
+       if(email ===''){
+        setErrorEmail(true);
+        setErrorEmailMessage('Enter your Email ');
+        return false;
+       }else{
+        setErrorEmail(false);
+
+       }
+
+       if(password ==='')
+       {
+         setErrorPassword(true);
+         setErrorPasswordMessage('Enter your Password');
+         return false;
+       }else{
+        setErrorPassword(false);
+       }
+
+       return true;
+
+   };
+
+
+   // Send Form 
+   const sendFrom = () => {
+
+    if(validateForm() == true){
+      alert('Send Data To API');
+    }
+      
+   }
+
+
+  
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -80,6 +127,8 @@ export default function SignInSide() {
           
           <form className={classes.form} noValidate>
             <TextField
+              onChange={emailChange}
+              error={errorEmail}
               variant="outlined"
               margin="normal"
               required
@@ -90,7 +139,10 @@ export default function SignInSide() {
               autoComplete="email"
               autoFocus
             />
+             { errorEmail ? <ErrorMessage text={errorEmailMessage} /> : null}
             <TextField
+              onChange={passwordChange}
+              error={errorPassword}
               variant="outlined"
               margin="normal"
               required
@@ -101,11 +153,14 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
             />
+            { errorPassword ? <ErrorMessage text={ errorPasswordMessage}/> : null}
+
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
+              onClick={sendFrom}
               fullWidth
               variant="contained"
               color="primary"
