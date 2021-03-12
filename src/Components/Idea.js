@@ -1,4 +1,4 @@
-import React ,{useState} from 'react'
+import React ,{useState , useEffect} from 'react'
 import Grid from '@material-ui/core/Grid';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +14,8 @@ import ThumbUpAltRoundedIcon from '@material-ui/icons/ThumbUpAltRounded';
 import Box from '@material-ui/core/Box';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import Divider from '@material-ui/core/Divider';
+import axios from 'axios';
+import { AirplanemodeInactiveOutlined } from '@material-ui/icons';
 
 
 const useStyles = makeStyles({
@@ -51,7 +53,6 @@ function Item(props) {
     function likeFun(){
         setLike(!like);
     }
-  
     return (
         <Grid sm={6} xs={12} md={3} >
               <Box border={1} className={classes.root} >
@@ -107,6 +108,29 @@ function Item(props) {
 const Idea = () => {
   const classes = useStyles();
 
+  const [allData , setAllData] = useState([]);
+
+  // fetch data from API
+  useEffect(() => {
+
+      async function fetchData() {
+        const request = await axios.get("http://127.0.0.1:8000/ideas/");
+        console.log(request.data);
+        setAllData(request.data);
+        return request;
+      }      
+       fetchData();
+
+    }, []);
+
+  //   const persons = allData.map((item, i) => {
+  //     return 
+  //        (<div>
+  //           <h1> {item.id} </h1> 
+  //        </div>);
+  // });
+
+
     return (
         <div>
             <br/>
@@ -115,6 +139,8 @@ const Idea = () => {
             <Grid container>
                 <Grid item > 
                 </Grid>
+
+                {/* {persons} */}
                 <Item title="Title 1" description="1 - Here is a description" vu="10K" like="true"/>
                 <Item title="Title 2" description="2 - Here is a description" vu="20K"/>
                 <Item title="Title 3" description="3 - Here is a description" vu="30K" like="true"/>
