@@ -25,21 +25,32 @@ const  MainContent = () =>{
     const classes = useStyles();
 
     const [allData , setAllData] = useState([]);
+    const [refrech, setRefrech] = useState(0);
 
     // fetch data from API
-    useEffect(() => {
+        useEffect(() => {
+    
+            async function fetchData() {
+            const request = await axios.get("http://127.0.0.1:8000/ideas/");
+            console.log(request.data);
+            setAllData(request.data);
+            return request;
+            }      
+            fetchData();
   
-        async function fetchData() {
-          const request = await axios.get("http://127.0.0.1:8000/ideas/");
-          console.log(request.data);
-          setAllData(request.data);
-          return request;
-        }      
-         fetchData();
-  
-      }, []);
+        }, [refrech]);
+    
 
 
+
+        async function distanceChange(dist) {
+
+  
+             await setRefrech(refrech +1);
+            //   console.log(refrech);
+
+            // alert('some' + dist + "  " + refrech);
+        };
 
     return (
         <div className="container" direction="row" justify="center" alignItems="center" style={{ marginTop: 20 , marginLeft:20}}>
@@ -53,7 +64,7 @@ const  MainContent = () =>{
                 </Typography>
             </Grid>
             <Grid item xs={12} sm={12} >
-                <AddIdea />
+                <AddIdea  onCalculateDistance={distanceChange}/>
                 <Button variant="outlined" color="primary"  >
                     Your Idea
                 </Button>

@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState , useEffect} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,9 +13,10 @@ import BackupIcon from '@material-ui/icons/Backup';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
+import axios from 'axios';
 
 
-const AddIdea = () => {
+const AddIdea = (props) => {
     
     const [open , setOpen] = useState(false);
 
@@ -29,6 +30,67 @@ const AddIdea = () => {
 
     };
 
+    //declare the form variables 
+
+    const [title, setTitle] = useState({
+        title : '',
+        error : false,
+    })
+
+    const titleChange = (e) => {
+        setTitle(title => { return {...title , title: e.target.value}})
+
+        console.log(e.target.value);
+    } 
+  
+    const [description , setDescription] = useState({
+        description : '',
+        error : false,
+    })
+
+    const descriptionChange = (e) => {
+        setDescription(description => { return {...description , description: e.target.value}})
+
+        console.log(e.target.value);
+    }
+
+    const validateFrom = () => {
+        if(title['title'] == ""){
+            setTitle(title => { return {...title , error: true}})
+            return true;
+        }else
+        {
+            setTitle(title => { return {...title , error: false}})
+            return false;
+        }
+    }
+
+    const sendForm =  () =>{
+
+        if(validateFrom() != true){
+            
+            const idea = { title: title['title'], description : description['description']};
+
+            axios.post('http://127.0.0.1:8000/ideas/', idea , {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });            
+
+            props.onCalculateDistance(true);
+            // returnDistance();
+            handleClose();
+        }
+
+    }
+
+    function returnDistance() {
+        const dist = "example";
+        props.onCalculateDistance(dist);
+        return dist;
+    }
+
+    
 
   return (
       <Grid item> 
@@ -58,19 +120,26 @@ const AddIdea = () => {
             <TextField
             autoFocus
             margin="dense"
-            id="name"
+            id="title"
+            name="title"
             label="Title"
             type="text"
             fullWidth
+            value={title['title']}
+            error={title['error']}
+            onChange={titleChange}
             />
              <TextField
             autoFocus
             multiline="true"
             margin="dense"
-            id="name"
+            id="description"
+            name="description"
             label="Description"
-            type="email"
+            type="text"
             fullWidth
+            value={description['description']}
+            onChange={descriptionChange}
             />
 
             <center>
@@ -96,7 +165,7 @@ const AddIdea = () => {
             <Button onClick={handleClose} color="primary" >
             Cancel
             </Button>
-            <Button onClick={handleClose} color="primary" variant="contained">
+            <Button onClick={sendForm} color="primary" variant="contained">
                 Save
             </Button>
         </DialogActions>
