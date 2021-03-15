@@ -140,14 +140,9 @@ const Idea = () => {
                 <Grid item > 
                 </Grid>
 
-                {/* {persons} */}
-                <Item title="Title 1" description="1 - Here is a description" vu="10K" like="true"/>
-                <Item title="Title 2" description="2 - Here is a description" vu="20K"/>
-                <Item title="Title 3" description="3 - Here is a description" vu="30K" like="true"/>
-                <Item title="Title 4" description="4 - Here is a description" vu="40K"/>
-                <Item title="Title 5" description="5 - Here is a description" vu="50K" like="true"/>
-                <Item title="Title 6" description="6 - Here is a description" vu="60K"/>
-
+                {allData.map((option) => (
+                  <Item title={option.title} description={"description : " + option.description + "  --   id : " +option.id} vu="10K" like="true"/>
+                ))}
             </Grid>
         </div>
 

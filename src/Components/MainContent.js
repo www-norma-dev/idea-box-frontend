@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState , useEffect} from 'react'
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,6 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import PostItem from '../Components/PostItem'
 import AddIdea from '../Components/AddIdea'
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +23,23 @@ const useStyles = makeStyles((theme) => ({
 
 const  MainContent = () =>{
     const classes = useStyles();
+
+    const [allData , setAllData] = useState([]);
+
+    // fetch data from API
+    useEffect(() => {
+  
+        async function fetchData() {
+          const request = await axios.get("http://127.0.0.1:8000/ideas/");
+          console.log(request.data);
+          setAllData(request.data);
+          return request;
+        }      
+         fetchData();
+  
+      }, []);
+
+
 
     return (
         <div className="container" direction="row" justify="center" alignItems="center" style={{ marginTop: 20 , marginLeft:20}}>
@@ -43,11 +61,10 @@ const  MainContent = () =>{
         </Grid>
 
         <Grid container justify="center" >
-            <PostItem />
-            <PostItem />
-            <PostItem />
-            <PostItem />
-            <PostItem />
+
+               {allData.map((option) => (
+                 <PostItem title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
+                ))}
             
         </Grid>
      </div>
