@@ -1,11 +1,11 @@
-import React from 'react'
+import React  from 'react'
 import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles';
-// import SignInSide from "./SignInSide";
-import MainAppbar from "../Components/MainAppbar"
 import { Typography } from '@material-ui/core';
-import Paper  from '@material-ui/core/Paper';
-import Container from '@material-ui/core/Container';
-import MainContent from '../Components/MainContent'
+import MainAppbar from "../Components/MainAppbar"
+import { Paper , Container } from '@material-ui/core';
+import {  BrowserRouter as useParams} from "react-router-dom";
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,23 +14,25 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
   }));
 
-const Home = props => {
+function Detail(props) {
     const classes = useStyles();
 
-    return (
-        <div className={classes.root}>
+    // const { id } = useParams();
+    // const { match: { params } } = this.props;
+
+
+  return (
+  <div className={classes.root}>
             <MainAppbar/>
+
             <Paper>
               <div className={classes.toolbar} />
             </Paper>
             <Container>
               <Typography>
-               <MainContent/>
               </Typography>
             </Container>
-         </div>
-
-    )
+   </div>)
 }
 
-export default Home
+export default Detail;

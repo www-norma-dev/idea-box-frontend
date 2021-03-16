@@ -123,14 +123,6 @@ const Idea = () => {
 
     }, []);
 
-  //   const persons = allData.map((item, i) => {
-  //     return 
-  //        (<div>
-  //           <h1> {item.id} </h1> 
-  //        </div>);
-  // });
-
-
     return (
         <div>
             <br/>

@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import PostItem from '../Components/PostItem'
 import AddIdea from '../Components/AddIdea'
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,8 +74,11 @@ const  MainContent = () =>{
 
         <Grid container justify="center" >
 
+                   {/* <Link to={'/detail/'+ option.id}></Link> */}
+
                {allData.map((option) => (
-                 <PostItem title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
+                     <PostItem title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
+                 
                 ))}
             
         </Grid>
