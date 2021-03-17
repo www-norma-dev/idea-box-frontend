@@ -1,9 +1,8 @@
 import React from 'react'
-import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles';
-// import SignInSide from "./SignInSide";
+import {  makeStyles } from '@material-ui/core/styles';
 import MainAppbar from "../Components/MainAppbar"
 import { Typography } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
+import Paper  from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import MainContent from '../Components/MainContent'
 
