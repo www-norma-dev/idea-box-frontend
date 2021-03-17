@@ -1,14 +1,11 @@
 import React , {useState , useEffect} from 'react'
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import PostItem from '../Components/PostItem'
 import AddIdea from '../Components/AddIdea'
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,9 +45,6 @@ const  MainContent = () =>{
 
   
              await setRefrech(refrech +1);
-            //   console.log(refrech);
-
-            // alert('some' + dist + "  " + refrech);
         };
 
     return (

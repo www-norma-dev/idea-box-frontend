@@ -5,8 +5,6 @@ import Home from '../page/Home'
 import SignUp from '../page/SignUp'
 import ChangePassword from '../page/ChangePassword'
 import ForgotPassword from '../page/ForgotPassword'
-import AllIdea from '../page/AllIdea'
-import Detail from '../page/Detail'
 
 
 function Routes() {
@@ -19,8 +17,6 @@ function Routes() {
         <Route path="/SignUp" component={SignUp} exact />
         <Route path="/ChangePassword" component={ChangePassword} exact />
         <Route path="/ForgotPassword" component={ForgotPassword} exact />
-        <Route path="/AllIdea" component={AllIdea} exact />
-        <Route path="/Detail/:id" component={Detail} exact />
 
       </Switch>
     </Router>
