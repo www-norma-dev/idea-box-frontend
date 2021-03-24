@@ -73,7 +73,8 @@ const AddIdea = (props) => {
   const [values, setValues] = useState({
     name:'',
     state: 'Envoyé',
-    cin: ''
+    img: '',
+    imgFile:'',
   });
 
   const [img, setimg] = useState('');
@@ -85,10 +86,10 @@ const AddIdea = (props) => {
 
     if(e.target.files[0])
     {
+      values.imgFile = e.target.files[0];
       setimg(e.target.files[0]);
-
       setimg(URL.createObjectURL(e.target.files[0]));
-      values.cin = e.target.files[0].name;
+      values.img = e.target.files[0].name;
     }
  }
 
@@ -108,8 +109,6 @@ const AddIdea = (props) => {
     setTitle((title) => {
       return { ...title, title: e.target.value }
     })
-
-    console.log(e.target.value)
   }
 
   const [description, setDescription] = useState({
@@ -121,8 +120,6 @@ const AddIdea = (props) => {
     setDescription((description) => {
       return { ...description, description: e.target.value }
     })
-
-    console.log(e.target.value)
   }
 
   const validateFrom = () => {
@@ -139,32 +136,27 @@ const AddIdea = (props) => {
     }
   }
 
-  const sendForm = () => {
+  const sendForm = async () =>  {
     
 
 
     if (validateFrom() != true) {
-        //test the upload 
-    // const formData = new FormData();
-    // formData.append(
-    //     "myFile",
-    //     img,
-    //     img.name
-    //   );
-    
-      const idea = {
-        title: title['title'],
-        description: description['description'],
-        filepath: 'url-test',
-      }
 
-    const request =  axios.post('http://127.0.0.1:8000/ideas/', idea, {
+    const form_data = new FormData();
+    form_data.append('title', title['title']);
+    form_data.append('description', description['description']);
+    form_data.append('files', values.imgFile , values.imgFile.name );
+    console.log(form_data);
+
+
+     const request = await axios.post('http://127.0.0.1:8000/idea/', form_data, {
         headers: {
           'Content-Type': 'application/json',
         },
+      }).then(res => {
+        console.log(res.data.results);
       })
-
-    console.log(request.body);
+      .catch(err => console.log(err))
 
 
       props.onCalculateDistance(true)
@@ -201,14 +193,6 @@ const AddIdea = (props) => {
         <DialogContent>
           <DialogContentText></DialogContentText>
 
-          {/* <InputLabel id="demo-simple-select-label">Category</InputLabel>
-            <Select style={{ width: '100%' }} defaultValue="-1">
-                <MenuItem value={-1}>Make your choice</MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-            </Select> */}
-
           <TextField
             autoFocus
             margin="dense"
@@ -234,16 +218,12 @@ const AddIdea = (props) => {
             onChange={descriptionChange}
           />
 
-<Grid
-              item
-              md={12}
-              xs={12}
-            >
+          <Grid item md={12} xs={12} >
               <Card className={classes.cadre}>
                 <div className={classes.details}>
                   <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
-                      {values.cin}
+                      {values.img}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       Selectionner une image 
@@ -259,7 +239,7 @@ const AddIdea = (props) => {
                   </div>
                 </div>
                 <CardMedia
-                  className={classes.cover} image={img} title="Selectionner votre copie CIN"
+                  className={classes.cover} image={img} title="Selectionner une image"
                 />
               </Card>
             </Grid>

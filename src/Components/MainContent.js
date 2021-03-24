@@ -29,9 +29,9 @@ const  MainContent = () =>{
         useEffect(() => {
     
             async function fetchData() {
-            const request = await axios.get("http://127.0.0.1:8000/ideas/");
+            const request = await axios.get("http://127.0.0.1:8000/idea/");
             console.log(request.data);
-            setAllData(request.data);
+            setAllData(request.data.results);
             return request;
             }      
             fetchData();
@@ -42,8 +42,6 @@ const  MainContent = () =>{
 
 
         async function distanceChange(dist) {
-
-  
              await setRefrech(refrech +1);
         };
 
@@ -71,7 +69,7 @@ const  MainContent = () =>{
                    {/* <Link to={'/detail/'+ option.id}></Link> */}
 
                {allData.map((option) => (
-                     <PostItem title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
+                     <PostItem key={option.id} img={option.files} title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
                  
                 ))}
             
