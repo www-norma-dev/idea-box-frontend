@@ -275,9 +275,9 @@ export default function SignUp() {
           </form>
 
           <Grid container spacing={0}>
-          <Grid xs={5}><hr /></Grid>
-          <Grid xs={2}><p>OR</p></Grid>
-          <Grid xs={5}><hr /></Grid>
+          <Grid item xs={5}><hr /></Grid>
+          <Grid item xs={2}><p>OR</p></Grid>
+          <Grid item xs={5}><hr /></Grid>
           
 
           </Grid>

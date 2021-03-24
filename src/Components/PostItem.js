@@ -79,7 +79,7 @@ export default function PostItem(props) {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image="https://source.unsplash.com/random"
+            image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
             title="Paella dish"
           />
           <CardContent>
