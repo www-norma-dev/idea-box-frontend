@@ -5,6 +5,7 @@ import Home from '../page/Home'
 import SignUp from '../page/SignUp'
 import ChangePassword from '../page/ChangePassword'
 import ForgotPassword from '../page/ForgotPassword'
+import IdeaDetail from '../page/IdeaDetail'
 
 
 function Routes() {
@@ -17,6 +18,7 @@ function Routes() {
         <Route path="/SignUp" component={SignUp} exact />
         <Route path="/ChangePassword" component={ChangePassword} exact />
         <Route path="/ForgotPassword" component={ForgotPassword} exact />
+		<Route path="/detail" render={(props) => <IdeaDetail {...props}/>}/>
 
       </Switch>
     </Router>

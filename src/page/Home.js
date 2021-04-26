@@ -13,10 +13,10 @@ const useStyles = makeStyles((theme) => ({
     toolbar: theme.mixins.toolbar,
   }));
 
-const Home = props => {
-    const classes = useStyles();
+	const Home = props => {
+		const classes = useStyles();
 
-    return (
+		return (
         <div className={classes.root}>
             <MainAppbar/>
             <Paper>

@@ -17,6 +17,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Grid from '@material-ui/core/Grid'
 import CardActionArea from '@material-ui/core/CardActionArea'
+import { useHistory } from "react-router-dom";
+import { BrowserRouter as Redirect } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PostItem(props) {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
+  const history = useHistory();
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -57,6 +60,17 @@ export default function PostItem(props) {
 
   const likeButton = () => {
     setLike(!like)
+  }
+
+  const showDetail = () => {
+    history.push("/detail");
+
+	<Redirect
+            to={{
+            pathname: "/detail",
+            state: { property_id: "1" }
+          }}
+        />
   }
 
   return (
@@ -76,7 +90,7 @@ export default function PostItem(props) {
           title="Shrimp and Chorizo Paella"
           subheader="September 14, 2021"
         />
-        <CardActionArea>
+        <CardActionArea onClick={showDetail}>
           <CardMedia
             className={classes.media}
             image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
