@@ -64,12 +64,14 @@ const  MainContent = () =>{
             </Grid>
         </Grid>
 
-        <Grid container justify="center" >
+		
+
+        <Grid container justify="center" style={{marginLeft: 30}} >
 
                    {/* <Link to={'/detail/'+ option.id}></Link> */}
 
                {allData.map((option) => (
-                     <PostItem key={option.id} img={option.files} title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
+                     <PostItem id={option.id} img={option.files} title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
                  
                 ))}
             

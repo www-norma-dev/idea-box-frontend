@@ -1,7 +1,5 @@
-import {React} from 'react'
-import { useHistory } from "react-router-dom";
-
-import {  makeStyles } from '@material-ui/core/styles';
+import {React, useState} from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import MainAppbar from "../Components/MainAppbar"
 import { Typography } from '@material-ui/core';
 import Paper  from '@material-ui/core/Paper';
@@ -27,14 +25,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 const IdeaDetail = (props) => {
-	const location = React.useLocation();
 
 		const classes = useStyles();
-		const [like, setLike] = React.useState(false)
+		const [like, setLike] = useState(false);
+		// const {id } = useParams();
 
 		const likeButton = () => {
 		  setLike(!like);
-		  console.log(location.state.property_id);
 
 		}
 

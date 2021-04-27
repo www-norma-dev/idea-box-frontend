@@ -19,6 +19,9 @@ import Grid from '@material-ui/core/Grid'
 import CardActionArea from '@material-ui/core/CardActionArea'
 import { useHistory } from "react-router-dom";
 import { BrowserRouter as Redirect } from 'react-router-dom'
+import EditIcon from '@material-ui/icons/Edit';
+// import ModifieIdea from '.. Components/ModifieIdea'
+import ModifieIdea from '../Components/ModfieIdea'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,8 +55,8 @@ export default function PostItem(props) {
   const [expanded, setExpanded] = React.useState(false)
   const history = useHistory();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded)
+  const handleEditClick = () => {
+
   }
 
   const [like, setLike] = React.useState(false)
@@ -117,41 +120,11 @@ export default function PostItem(props) {
               <FavoriteIcon />
             )}
           </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-          <IconButton
-            className={clsx(classes.expand, {
-              [classes.expandOpen]: expanded,
-            })}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
+		  {/* <ModifieIdea /> */}
+		  <ModifieIdea title={props.title} description={props.description} img={props.img} id={props.id}/>
+    
+   
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Mor Information :</Typography>
-
-            <Typography paragraph align="left">
-              Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-              over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-              stirring occasionally until lightly browned, 6 to 8 minutes.
-              Transfer shrimp to a large plate and set aside, leaving chicken
-              and chorizo in the pan. Add pimentón, bay leaves, garlic,
-              tomatoes, onion, salt and pepper, and cook, stirring often until
-              thickened and fragrant, about 10 minutes. Add saffron broth and
-              remaining 4 1/2 cups chicken broth; bring to a boil.
-            </Typography>
-
-            <Typography align="left">
-              Set aside off of the heat to let rest for 10 minutes, and then
-              serve.
-            </Typography>
-          </CardContent>
-        </Collapse>
       </Card>
     </Grid>
   )
