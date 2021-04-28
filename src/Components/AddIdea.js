@@ -183,6 +183,7 @@ const AddIdea = (props) => {
         New Idea
       </Button>
       <Dialog
+	   maxWidth="lg"
         fullWidth="true"
         open={open}
         onClose={handleClose}

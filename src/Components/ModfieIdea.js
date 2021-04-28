@@ -183,6 +183,7 @@ const ModifieIdea = (props) => {
           </IconButton>	
 
       <Dialog
+	  	   maxWidth="lg"
         fullWidth="true"
         open={open}
         onClose={handleClose}
