@@ -18,7 +18,7 @@ function Routes() {
         <Route path="/SignUp" component={SignUp} exact />
         <Route path="/ChangePassword" component={ChangePassword} exact />
         <Route path="/ForgotPassword" component={ForgotPassword} exact />
-		<Route path="/detail" render={(props) => <IdeaDetail {...props}/>}/>
+		<Route path="/detail/:ideaNumber" render={(props) => <IdeaDetail {...props}/>}/>
 
       </Switch>
     </Router>

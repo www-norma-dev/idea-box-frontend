@@ -148,11 +148,8 @@ const ModifieIdea = (props) => {
 	console.log(values.isNull);
 	if(values.name !== ''){
 		form_data.append('files', values.imgFile , values.imgFile.name );
-
 	}
-    console.log(form_data);
-
-	console.log(props.id);
+  
 
      const request = await axios.put('http://127.0.0.1:8000/idea/'+props.id+"/", form_data, {
         headers: {
@@ -191,7 +188,7 @@ const ModifieIdea = (props) => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">New Idea</DialogTitle>
+        <DialogTitle id="form-dialog-title">Modify the idea</DialogTitle>
         <Divider/>
         <DialogContent>
           <DialogContentText></DialogContentText>

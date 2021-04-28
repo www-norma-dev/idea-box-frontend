@@ -66,14 +66,14 @@ export default function PostItem(props) {
   }
 
   const showDetail = () => {
-    history.push("/detail");
+    history.push("/detail/"+ props.id);
 
-	<Redirect
-            to={{
-            pathname: "/detail",
-            state: { property_id: "1" }
-          }}
-        />
+	// <Redirect
+    //         to={{
+    //         pathname: "/detail",
+    //         state: { property_id: "1" }
+    //       }}
+    //     />
   }
 
   return (

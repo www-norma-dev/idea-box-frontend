@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import MainAppbar from "../Components/MainAppbar"
 import { Typography } from '@material-ui/core';
@@ -14,7 +14,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import axios from 'axios'
 
+import {
+	BrowserRouter as Router,
+
+	useParams
+  } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,10 +35,30 @@ const IdeaDetail = (props) => {
 		const classes = useStyles();
 		const [like, setLike] = useState(false);
 		// const {id } = useParams();
+		let { ideaNumber } = useParams();
+		
+		const [idea, setIdea] = useState({});
+		
+
+		useEffect (  () =>  {
+			const request =  axios.get('http://127.0.0.1:8000/idea/'+ideaNumber+"/", {
+				headers: {
+				  'Content-Type': 'application/json',
+				},
+			  }).then(res => {
+				setIdea(res.data);
+
+			  })
+			  .catch(err => console.log(err))
+		})
+
+		
+
+
+	
 
 		const likeButton = () => {
 		  setLike(!like);
-
 		}
 
     return (
@@ -44,16 +70,15 @@ const IdeaDetail = (props) => {
           component="img"
           alt="Contemplative Reptile"
           height="400"
-          image="https://source.unsplash.com/random"
+          image= { (idea.files == "" || idea.files== null)  ? "https://source.unsplash.com/random" : idea.files}
           title="Contemplative Reptile"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            {idea.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+           {idea.description}
           </Typography>
         </CardContent>
 
