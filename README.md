@@ -73,3 +73,22 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Light And Dark Mode
+
+In this project you will find a theme file, or you can customize it according to your color choices.
+
+We used a color palette for Light mode and dark mode also a typography file
+
+you will find in this [documentation](https://material-ui.com/customization/palette/) more detail to personalize it
+
+To change the mode, all you have to do is access the ThemeContext file and then use the 'updateTheme' method to change the mode, here is an example:
+
+Call the file:
+
+import ThemeContext from 'src / theme / ThemeContext'
+
+And use this code to change the mode:
+
+const contextValue = useContext (ThemeContext); contextValue.updateTheme ("light");
