@@ -55,10 +55,6 @@ export default function PostItem(props) {
   const [expanded, setExpanded] = React.useState(false)
   const history = useHistory();
 
-  const handleEditClick = () => {
-
-  }
-
   const [like, setLike] = React.useState(false)
 
   const likeButton = () => {
@@ -68,12 +64,6 @@ export default function PostItem(props) {
   const showDetail = () => {
     history.push("/detail/"+ props.id);
 
-	// <Redirect
-    //         to={{
-    //         pathname: "/detail",
-    //         state: { property_id: "1" }
-    //       }}
-    //     />
   }
 
   return (
@@ -90,7 +80,7 @@ export default function PostItem(props) {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
+          title={props.title}
           subheader="September 14, 2021"
         />
         <CardActionArea onClick={showDetail}>

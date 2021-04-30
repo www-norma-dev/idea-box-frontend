@@ -174,7 +174,7 @@ const MainAppbar = props => {
                       inputProps={{ 'aria-label': 'search' }}
                     />
                   </div>
-                  <Link to="/login">
+                  <Link to="/login" hidden>
                     <Button color="inherit">Login</Button>
                   </Link>
                 </Toolbar>

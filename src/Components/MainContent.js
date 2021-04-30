@@ -58,7 +58,7 @@ const  MainContent = () =>{
             </Grid>
             <Grid item xs={12} sm={12} >
                 <AddIdea  onCalculateDistance={distanceChange}/>
-                <Button variant="outlined" color="primary"  >
+                <Button variant="outlined" color="primary"  hidden>
                     Your Idea
                 </Button>
             </Grid>
