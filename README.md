@@ -87,8 +87,10 @@ To change the mode, all you have to do is access the ThemeContext file and then 
 
 Call the file:
 
-import ThemeContext from 'src / theme / ThemeContext'
+import ThemeContext from `src/theme/ThemeContext`
 
 And use this code to change the mode:
-
-const contextValue = useContext (ThemeContext); contextValue.updateTheme ("light");
+```
+const contextValue = useContext (ThemeContext); 
+contextValue.updateTheme ("light");
+```
