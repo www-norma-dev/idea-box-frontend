@@ -22,7 +22,6 @@ import { BrowserRouter as Redirect } from 'react-router-dom'
 import EditIcon from '@material-ui/icons/Edit';
 // import ModifieIdea from '.. Components/ModifieIdea'
 import ModifieIdea from '../Components/ModfieIdea'
-
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -96,7 +95,7 @@ export default function PostItem(props) {
               color="textSecondary"
               align="left"
               component="p"
-			  style={{overflow: "hidden", textOverflow: "ellipsis", maxHeight: '100px' }}
+			  style={{overflow: "hidden", textOverflow: "ellipsis", maxHeight: '100px' ,  whiteSpace: "pre-line" }}
             >
               {props.description}
             </Typography>

@@ -15,6 +15,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import axios from 'axios'
+import ModifieIdea from '../Components/ModfieIdea'
+
 
 import {
 	BrowserRouter as Router,
@@ -77,8 +79,9 @@ const IdeaDetail = (props) => {
           <Typography gutterBottom variant="h5" component="h2">
             {idea.title}
           </Typography>
-				<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left"}} >
+				<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
 				{idea.description}
+
 			</Typography>
         </CardContent>
 
@@ -90,6 +93,8 @@ const IdeaDetail = (props) => {
               <FavoriteIcon />
             )}
           </IconButton>
+
+		  <ModifieIdea title={idea.title} description={idea.description} img={idea.img} id={idea.id}/>
 		  </CardActions>
 
     </Card>
