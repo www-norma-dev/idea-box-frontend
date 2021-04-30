@@ -89,13 +89,14 @@ export default function PostItem(props) {
             image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
             title="Paella dish"
           />
-          <CardContent>
+          <CardContent style={{maxHeight: '200px' }}>
             <Typography variant="h5">{props.title}</Typography>
             <Typography
               variant="body2"
               color="textSecondary"
               align="left"
               component="p"
+			  style={{overflow: "hidden", textOverflow: "ellipsis", maxHeight: '100px' }}
             >
               {props.description}
             </Typography>
