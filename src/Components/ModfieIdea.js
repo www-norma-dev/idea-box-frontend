@@ -151,7 +151,7 @@ const ModifieIdea = (props) => {
 	}
   
 
-     const request = await axios.put('http://127.0.0.1:8000/idea/'+props.id+"/", form_data, {
+     const request = await axios.put(process.env.REACT_APP_URL_API+'idea/'+props.id+"/", form_data, {
         headers: {
           'Content-Type': 'application/json',
         },

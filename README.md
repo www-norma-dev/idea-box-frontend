@@ -89,8 +89,11 @@ Call the file:
 
 import ThemeContext from `src/theme/ThemeContext`
 
+`https://bareynol.github.io/mui-theme-creator/` 
+
 And use this code to change the mode:
+
 ```
-const contextValue = useContext (ThemeContext); 
-contextValue.updateTheme ("light");
+const contextValue = useContext(ThemeContext); 
+contextValue.updateTheme("light");
 ```

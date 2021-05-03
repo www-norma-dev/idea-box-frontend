@@ -149,7 +149,7 @@ const AddIdea = (props) => {
     console.log(form_data);
 
 
-     const request = await axios.post('http://127.0.0.1:8000/idea/', form_data, {
+     const request = await axios.post(process.env.REACT_APP_URL_API+'idea/', form_data, {
         headers: {
           'Content-Type': 'application/json',
         },

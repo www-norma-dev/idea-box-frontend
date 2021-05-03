@@ -2,7 +2,8 @@ import './App.css'
 import Routes from './Routes/index'
 import React ,{useState} from 'react';
 import darkMode from './theme/darkMode';
-import lighmode from './theme/lighmode'
+import lighmode from './theme/lighmode';
+import yellowMode from './theme/yellowMode';
 import ThemeContext from './theme/ThemeContext'
 import { ThemeProvider } from '@material-ui/core';
 
@@ -17,7 +18,7 @@ function App() {
   return (
 
     <ThemeContext.Provider value={contextValue}>
-      <ThemeProvider theme={contextValue.themeUsed == "dark" ? darkMode : lighmode}>
+      <ThemeProvider theme={darkMode}>
      	 <Routes />
       </ThemeProvider>
     </ThemeContext.Provider>

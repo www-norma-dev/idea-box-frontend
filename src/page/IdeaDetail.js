@@ -43,7 +43,7 @@ const IdeaDetail = (props) => {
 		
 
 		useEffect (  () =>  {
-			const request =  axios.get('http://127.0.0.1:8000/idea/'+ideaNumber+"/", {
+			const request =  axios.get(process.env.REACT_APP_URL_API+'idea/'+ideaNumber+"/", {
 				headers: {
 				  'Content-Type': 'application/json',
 				},

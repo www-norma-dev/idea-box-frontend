@@ -29,7 +29,7 @@ const  MainContent = () =>{
         useEffect(() => {
     
             async function fetchData() {
-            const request = await axios.get("http://127.0.0.1:8000/idea/");
+            const request = await axios.get(process.env.REACT_APP_URL_API+"idea/");
             console.log(request.data);
             setAllData(request.data.results);
             return request;
