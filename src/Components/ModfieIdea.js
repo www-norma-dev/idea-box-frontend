@@ -29,6 +29,9 @@ import {
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 
+import * as actionCreatore from "../store/actions/actions"
+import {connect} from 'react-redux'
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   hidden: {
@@ -90,6 +93,7 @@ const ModifieIdea = (props) => {
       setimg(e.target.files[0]);
       setimg(URL.createObjectURL(e.target.files[0]));
       values.img = e.target.files[0].name;
+
     }
  }
 
@@ -142,36 +146,22 @@ const ModifieIdea = (props) => {
 
     if (validateFrom() != true) {
 
-    const form_data = new FormData();
-    form_data.append('title', title['title']);
-    form_data.append('description', description['description']);
-	console.log(values.isNull);
-	if(values.name !== ''){
-		form_data.append('files', values.imgFile , values.imgFile.name );
-	}
-  
+		const form_data = new FormData();
+		form_data.append('title', title['title']);
+		form_data.append('description', description['description']);
+		if(values.imgFile !== ''){
+			form_data.append('files', values.imgFile , values.imgFile.name );
+		}
+	
+		// Call the API from Redux
+		props.ModifeIdea(form_data, props.id).then(res =>{
+			props.loadIdea();
+		});
 
-     const request = await axios.put(process.env.REACT_APP_URL_API+'idea/'+props.id+"/", form_data, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(res => {
-        console.log(res.data.results);
-      })
-      .catch(err => console.log(err))
-
-
-    //   props.onCalculateDistance(true)
-      // returnDistance();
-      handleClose()
+     	 handleClose()
     }
   }
 
-  function returnDistance() {
-    const dist = 'example'
-    props.onCalculateDistance(dist)
-    return dist
-  }
 
   return (
     <Grid item>
@@ -262,4 +252,10 @@ const ModifieIdea = (props) => {
   )
 }
 
-export default ModifieIdea
+
+
+const mapStateToProps=(state)=>{
+	return state
+};
+
+export default connect(mapStateToProps, actionCreatore) (ModifieIdea);

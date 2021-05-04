@@ -22,12 +22,13 @@ import {
   Divider,
   Grid,
   Typography,
-  // InputAdornment,
   IconButton,
   TextField,
   makeStyles
 } from '@material-ui/core';
 
+import * as actionCreatore from "../store/actions/actions"
+import {connect} from 'react-redux'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -82,6 +83,7 @@ const AddIdea = (props) => {
 
 
   const getFileName = (e) => {
+	  
 
 
     if(e.target.files[0])
@@ -146,30 +148,17 @@ const AddIdea = (props) => {
     form_data.append('title', title['title']);
     form_data.append('description', description['description']);
     form_data.append('files', values.imgFile , values.imgFile.name );
-    console.log(form_data);
 
+	// Call the API from Redux 
+	props.AddIdea(form_data).then(res => {
+		props.loadIdea();
+	});
 
-     const request = await axios.post(process.env.REACT_APP_URL_API+'idea/', form_data, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then(res => {
-        console.log(res.data.results);
-      })
-      .catch(err => console.log(err))
-
-
-      props.onCalculateDistance(true)
-      // returnDistance();
-      handleClose()
+    handleClose()
     }
   }
 
-  function returnDistance() {
-    const dist = 'example'
-    props.onCalculateDistance(dist)
-    return dist
-  }
+ 
 
   return (
     <Grid item>
@@ -262,4 +251,10 @@ const AddIdea = (props) => {
   )
 }
 
-export default AddIdea
+
+
+const mapStateToProps=(state)=>{
+	return state
+};
+
+export default connect(mapStateToProps, actionCreatore) (AddIdea);

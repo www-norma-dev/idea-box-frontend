@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import PostItem from '../Components/PostItem'
 import AddIdea from '../Components/AddIdea'
 import axios from 'axios';
+import * as actionCreatore from "../store/actions/actions"
+import {connect} from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,31 +21,17 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const  MainContent = () =>{
+const  MainContent = (props) =>{
     const classes = useStyles();
-
-    const [allData , setAllData] = useState([]);
     const [refrech, setRefrech] = useState(0);
 
     // fetch data from API
-        useEffect(() => {
-    
-            async function fetchData() {
-            const request = await axios.get(process.env.REACT_APP_URL_API+"idea/");
-            console.log(request.data);
-            setAllData(request.data.results);
-            return request;
-            }      
-            fetchData();
-  
+        useEffect( () =>  {
+		 props.loadIdea();
         }, [refrech]);
     
 
-
-
-        async function distanceChange(dist) {
-             await setRefrech(refrech +1);
-        };
+    
 
     return (
         <div className="container" direction="row" justify="center" alignItems="center" style={{ marginTop: 20 , marginLeft:20}}>
@@ -57,27 +45,36 @@ const  MainContent = () =>{
                 </Typography>
             </Grid>
             <Grid item xs={12} sm={12} >
-                <AddIdea  onCalculateDistance={distanceChange}/>
+                <AddIdea/>
                 <Button variant="outlined" color="primary"  hidden>
                     Your Idea
                 </Button>
             </Grid>
         </Grid>
 
+		<Button onClick={props.loadIdea}>
+			click to change
+
+		</Button>
+
+		<Grid container justify="center" style={{marginLeft: 30}} >
+                   {/* <Link to={'/detail/'+ option.id}></Link> */}
+               {
+				   props.idea != undefined ?
+			   props.idea.map((option) => (
+                     <PostItem id={option.id} img={option.files} title={option.title} description={option.description} />
+                )) : ""}
+        </Grid>
 		
 
-        <Grid container justify="center" style={{marginLeft: 30}} >
-
-                   {/* <Link to={'/detail/'+ option.id}></Link> */}
-
-               {allData.map((option) => (
-                     <PostItem id={option.id} img={option.files} title={option.title} description={"Description : " + option.description + " Id : " + option.id} />
-                 
-                ))}
-            
-        </Grid>
+        
      </div>
     )
 }
 
-export default MainContent;
+const mapStateToProps=(state)=>{
+	return state
+};
+
+export default connect(mapStateToProps, actionCreatore) (MainContent);
+// export default MainContent;
