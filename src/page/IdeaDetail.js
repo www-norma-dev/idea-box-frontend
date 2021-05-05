@@ -49,7 +49,9 @@ const IdeaDetail = (props) => {
 				},
 			  }).then(res => {
 				setIdea(res.data);
-
+				localStorage.setItem('title' ,res.data.title);
+				localStorage.setItem('description' ,res.data.description);
+				localStorage.setItem('img' ,res.data.files);
 			  })
 			  .catch(err => console.log(err))
 		})
@@ -94,7 +96,7 @@ const IdeaDetail = (props) => {
             )}
           </IconButton>
 
-		  <ModifieIdea title={idea.title} description={idea.description} img={idea.img} id={idea.id}/>
+		  <ModifieIdea title={localStorage.getItem('title')} description={localStorage.getItem('description')} img={localStorage.getItem('img')} id={idea.id}/>
 		  </CardActions>
 
     </Card>
