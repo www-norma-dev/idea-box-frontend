@@ -62,7 +62,13 @@ const  MainContent = (props) =>{
                {
 				   props.idea != undefined ?
 			   props.idea.map((option) => (
-                     <PostItem id={option.id} img={option.files} title={option.title} description={option.description} />
+                     <PostItem 
+                        id={option.id} 
+                        img={option.files} 
+                        title={option.title} 
+                        date={option.date}
+                        description={option.description} 
+                     />
                 )) : ""}
         </Grid>
 		

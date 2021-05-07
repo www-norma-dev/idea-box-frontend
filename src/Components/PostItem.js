@@ -80,7 +80,7 @@ export default function PostItem(props) {
             </IconButton>
           }
           title={props.title}
-          subheader="September 14, 2021"
+          subheader={props.date}
         />
         <CardActionArea onClick={showDetail}>
           <CardMedia
