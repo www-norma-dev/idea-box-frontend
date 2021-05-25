@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Copyright from '../Components/Copyright'
 import ErrorMessage from '../Components/ErrorMessage'
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -76,7 +77,7 @@ export default function SignInSide() {
    const validateForm = () => {
        if(email ===''){
         setErrorEmail(true);
-        setErrorEmailMessage('Enter your Email ');
+        setErrorEmailMessage('Enter your Email');
         return false;
        }else{
         setErrorEmail(false);
@@ -105,9 +106,8 @@ export default function SignInSide() {
     }
       
    }
+   const { t, i18n } = useTranslation();
 
-
-  
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -119,10 +119,10 @@ export default function SignInSide() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {t('Sign in')}
           </Typography>
           <Typography component="h1" variant="h5">
-            Idea Box
+            {t('Idea Box')}
           </Typography>
           
           <form className={classes.form} noValidate>
@@ -134,7 +134,7 @@ export default function SignInSide() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label={t('Email Address')}
               name="email"
               autoComplete="email"
               autoFocus
@@ -148,7 +148,7 @@ export default function SignInSide() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label={t('Password')}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -157,7 +157,7 @@ export default function SignInSide() {
 
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label={t('Remember me')}
             />
             <Button
               onClick={sendFrom}
@@ -166,17 +166,17 @@ export default function SignInSide() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              {t('Sign In')}
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="/ForgotPassword" variant="body2">
-                  Forgot password?
+                  {t('Forgot password?')}
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/SignUp" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {t("Don't have an account? Sign Up")}
                 </Link>
               </Grid>
             </Grid>

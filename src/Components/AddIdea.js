@@ -179,7 +179,7 @@ const AddIdea = (props) => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">{('New Idea')}</DialogTitle>
+        <DialogTitle id="form-dialog-title">{t('New Idea')}</DialogTitle>
         <Divider/>
         <DialogContent>
           <DialogContentText></DialogContentText>
@@ -189,7 +189,7 @@ const AddIdea = (props) => {
             margin="dense"
             id="title"
             name="title"
-            label="Title"
+            label={t('Title')}
             type="text"
             fullWidth
             value={title['title']}
@@ -202,7 +202,7 @@ const AddIdea = (props) => {
             margin="dense"
             id="description"
             name="description"
-            label="Description"
+            label={t('Description')}
             type="text"
             fullWidth
             value={description['description']}
