@@ -158,9 +158,8 @@ const AddIdea = (props) => {
     handleClose()
     }
   }
-  const { t } = useTranslation();
 
- 
+  const { t, i18n } = useTranslation();
 
   return (
     <Grid item>
@@ -171,7 +170,7 @@ const AddIdea = (props) => {
         startIcon={<AddIcon />}
         style={{ margin: 20 }}
       >
-        New Idea
+        {t('New Idea')}
       </Button>
       <Dialog
 	   maxWidth="lg"
@@ -180,7 +179,7 @@ const AddIdea = (props) => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">New Idea</DialogTitle>
+        <DialogTitle id="form-dialog-title">{('New Idea')}</DialogTitle>
         <Divider/>
         <DialogContent>
           <DialogContentText></DialogContentText>
@@ -218,7 +217,7 @@ const AddIdea = (props) => {
                       {values.img}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                      Selectionner une image 
+                    {t('Select an image')}
                     </Typography>
                   </CardContent>
                   <div className={classes.controls}>
@@ -231,7 +230,7 @@ const AddIdea = (props) => {
                   </div>
                 </div>
                 <CardMedia
-                  className={classes.cover} image={img} title="Selectionner une image"
+                  className={classes.cover} image={img} title={t('Select an image')}
                 />
               </Card>
             </Grid>
@@ -242,10 +241,10 @@ const AddIdea = (props) => {
 
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancel
+            {t('Cancel')}
           </Button>
           <Button onClick={sendForm} color="primary" variant="contained">
-            Save
+            {t('Save')}
           </Button>
         </DialogActions>
       </Dialog>
