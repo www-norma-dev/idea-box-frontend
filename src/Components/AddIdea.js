@@ -29,6 +29,7 @@ import {
 
 import * as actionCreatore from "../store/actions/actions"
 import {connect} from 'react-redux'
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -157,6 +158,7 @@ const AddIdea = (props) => {
     handleClose()
     }
   }
+  const { t } = useTranslation();
 
  
 
