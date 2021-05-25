@@ -126,17 +126,33 @@ const AddIdea = (props) => {
   }
 
   const validateFrom = () => {
+	  var isValid = false;
+
+	// Checker Title if not null show error else remove error
     if (title['title'] == '') {
       setTitle((title) => {
         return { ...title, error: true }
       })
-      return true
-    } else {
-      setTitle((title) => {
-        return { ...title, error: false }
-      })
-      return false
-    }
+      isValid=  true;
+    } else{
+		setTitle((title) => {
+			return { ...title, error: false }
+		  })
+	}
+
+	 // Checke Description if not null show error else remove error
+	 if (description['description'] == '') {
+		setDescription((description) => {
+		  return { ...description, error: true }
+		})
+		isValid = true;
+	  } else{
+		setDescription((description) => {
+			return { ...description, error: false }
+		  })
+	  }
+
+	return isValid;
   }
 
   const sendForm = async () =>  {
@@ -195,8 +211,10 @@ const AddIdea = (props) => {
             value={title['title']}
             error={title['error']}
             onChange={titleChange}
+			
           />
           <TextField
+		  	required
             autoFocus
             multiline="true"
             margin="dense"
@@ -207,6 +225,7 @@ const AddIdea = (props) => {
             fullWidth
             value={description['description']}
             onChange={descriptionChange}
+			error={description['error']}
           />
 
           <Grid item md={12} xs={12} >
