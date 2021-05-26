@@ -13,6 +13,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import SignInSide from "./SignInSide";
 import Sidebar from "./Sidebar"
+import { useTranslation } from 'react-i18next';
 
 
 const drawerWidth = 240;
@@ -136,6 +137,7 @@ const MainAppbar = props => {
     const handleDrawerClose = () => {
       setOpen(false);
     };
+    const { t, i18n } = useTranslation();
 
     return (
         <div className={classes.root}>
@@ -159,14 +161,14 @@ const MainAppbar = props => {
                       <MenuIcon />
                   </IconButton>
                   <Typography variant="h6" className={classes.title}>
-                      Idea Box
+                      {t('Idea Box')}
                   </Typography>
                   <div className={classes.search}>
                     <div className={classes.searchIcon}>
                       <SearchIcon />
                     </div>
                     <InputBase
-                      placeholder="Search…"
+                      placeholder={t('Search…')}
                       classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,

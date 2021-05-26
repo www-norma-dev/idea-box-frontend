@@ -31,6 +31,9 @@ import EditIcon from '@material-ui/icons/Edit';
 
 import * as actionCreatore from "../store/actions/actions"
 import {connect} from 'react-redux'
+import { useTranslation } from 'react-i18next';
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -161,6 +164,7 @@ const ModifieIdea = (props) => {
      	 handleClose()
     }
   }
+  const { t, i18n } = useTranslation();
 
 
   return (
@@ -179,7 +183,7 @@ const ModifieIdea = (props) => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Modify the idea</DialogTitle>
+        <DialogTitle id="form-dialog-title">{t('Modify the idea')}</DialogTitle>
         <Divider/>
         <DialogContent>
           <DialogContentText></DialogContentText>
@@ -217,7 +221,7 @@ const ModifieIdea = (props) => {
                       {values.img}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
-                      Selectionner une image 
+                      {t('Select an image')}
                     </Typography>
                   </CardContent>
                   <div className={classes.controls}>
@@ -230,7 +234,7 @@ const ModifieIdea = (props) => {
                   </div>
                 </div>
                 <CardMedia
-                  className={classes.cover} image={img} title="Selectionner une image"
+                  className={classes.cover} image={img} title={t('Select an image')}
                 />
               </Card>
             </Grid>
@@ -241,10 +245,10 @@ const ModifieIdea = (props) => {
 
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancel
+            {t('Cancel')}
           </Button>
           <Button onClick={sendForm} color="primary" variant="contained">
-            Save
+            {t('Save')}
           </Button>
         </DialogActions>
       </Dialog>

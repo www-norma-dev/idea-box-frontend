@@ -6,7 +6,7 @@ import lighmode from './theme/lighmode';
 import yellowMode from './theme/yellowMode';
 import ThemeContext from './theme/ThemeContext'
 import { ThemeProvider } from '@material-ui/core';
-
+import './public/config';
 
 
 function App() {

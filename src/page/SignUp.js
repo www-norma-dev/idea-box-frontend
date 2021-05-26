@@ -17,7 +17,7 @@ import './SignUp.css';
 import { FcGoogle } from 'react-icons/fc';
 import Copyright from '../Components/Copyright'
 import ErrorMessage from '../Components/ErrorMessage'
-
+import { useTranslation } from 'react-i18next';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -154,6 +154,8 @@ export default function SignUp() {
     validateEmail();
     validatePassword();
   }
+  const { t, i18n } = useTranslation();
+
 
 
   return (
@@ -166,7 +168,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign UP
+            {t('Sign UP')}
           </Typography> 
           
           <form className={classes.form} noValidate>
@@ -179,7 +181,7 @@ export default function SignUp() {
                     margin="normal"
                     required
                     fullWidth
-                    label="First Name"
+                    label={t('First Name')}
                     name="text"
                     autoComplete="text"
                     autoFocus
@@ -194,7 +196,7 @@ export default function SignUp() {
                         margin="normal"
                         fullWidth
                         id="email"
-                        label="Last Name"
+                        label={t('Last Name')}
                         name="text"
                         autoComplete="text"
                         autoFocus
@@ -210,7 +212,7 @@ export default function SignUp() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label={t('Email Address')}
               name="email"
               autoComplete="email"
               autoFocus
@@ -224,7 +226,7 @@ export default function SignUp() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label={t('Password')}
               type="password"
               id="password"
               autoComplete="current-password"              
@@ -238,7 +240,7 @@ export default function SignUp() {
               required
               fullWidth
               name="password"
-              label="Confirm Password"
+              label={t('Confirm Password')}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -247,7 +249,7 @@ export default function SignUp() {
 
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" onChange={agreeChange} />}
-              label="I agree to the terms of use and privacy policy"
+              label={t('I agree to the terms of use and privacy policy')}
             />
             <Button
               disabled={!agreeTerms}
@@ -257,7 +259,7 @@ export default function SignUp() {
               color="primary"
               className={classes.submit}
             >
-              Sign Up
+              {t('Sign Up')}
             </Button>
             <Grid container>
               <Grid item xs>
@@ -265,7 +267,7 @@ export default function SignUp() {
               </Grid>
               <Grid item>
                 <Link href="/Login" variant="body2">
-                  {"Already have an account? Sign in"}
+                  {t("Already have an account? Sign in")}
                 </Link>
               </Grid>
             </Grid>
@@ -276,7 +278,7 @@ export default function SignUp() {
 
           <Grid container spacing={0}>
           <Grid item xs={5}><hr /></Grid>
-          <Grid item xs={2}><p>OR</p></Grid>
+          <Grid item xs={2}><p>{t('OR')}</p></Grid>
           <Grid item xs={5}><hr /></Grid>
           
 

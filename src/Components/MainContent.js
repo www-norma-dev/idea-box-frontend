@@ -8,6 +8,7 @@ import AddIdea from '../Components/AddIdea'
 import axios from 'axios';
 import * as actionCreatore from "../store/actions/actions"
 import {connect} from 'react-redux'
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
 const  MainContent = (props) =>{
     const classes = useStyles();
     const [refrech, setRefrech] = useState(0);
@@ -29,6 +31,8 @@ const  MainContent = (props) =>{
         useEffect( () =>  {
 		 props.loadIdea();
         }, [refrech]);
+
+    const { t, i18n } = useTranslation();
     
 
     
@@ -38,7 +42,7 @@ const  MainContent = (props) =>{
             <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
                  <Typography variant="h4" component="h3" gutterBottom align="center" >
-                    IDEA BOX
+                    {t('IDEA BOX')}
                 </Typography>
                 <Typography variant="subtitle1" component="h3" gutterBottom align="center" >
                 subtitle1
@@ -47,13 +51,13 @@ const  MainContent = (props) =>{
             <Grid item xs={12} sm={12} >
                 <AddIdea/>
                 <Button variant="outlined" color="primary"  hidden>
-                    Your Idea
+                    {t('Your Idea')}
                 </Button>
             </Grid>
         </Grid>
 
 		<Button onClick={props.loadIdea}>
-			click to change
+			{t('click to change')}
 
 		</Button>
 
