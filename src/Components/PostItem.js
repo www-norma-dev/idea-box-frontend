@@ -99,6 +99,7 @@ export default function PostItem(props) {
             >
               {props.description}
             </Typography>
+            <Typography>{props.email}</Typography>
           </CardContent>
         </CardActionArea>
 
