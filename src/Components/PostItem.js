@@ -79,7 +79,6 @@ export default function PostItem(props) {
               <MoreVertIcon />
             </IconButton>
           }
-          title={props.title}
           subheader="September 14, 2021"
         />
         <CardActionArea onClick={showDetail}>
@@ -90,6 +89,7 @@ export default function PostItem(props) {
           />
           <CardContent style={{maxHeight: '200px' }}>
             <Typography variant="h5">{props.title}</Typography>
+            <Typography variant="h5">{props.tags}</Typography>
             <Typography
               variant="body2"
               color="textSecondary"

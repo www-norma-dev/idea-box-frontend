@@ -51,6 +51,7 @@ const IdeaDetail = (props) => {
 				setIdea(res.data);
 				localStorage.setItem('title' ,res.data.title);
 				localStorage.setItem('description' ,res.data.description);
+				localStorage.setItem('tags' ,res.data.tags);
 				localStorage.setItem('img' ,res.data.files);
 			  })
 			  .catch(err => console.log(err))
@@ -83,6 +84,7 @@ const IdeaDetail = (props) => {
           </Typography>
 				<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
 				{idea.description}
+				{idea.tags}
 
 			</Typography>
         </CardContent>
@@ -96,7 +98,7 @@ const IdeaDetail = (props) => {
             )}
           </IconButton>
 
-		  <ModifieIdea title={localStorage.getItem('title')} description={localStorage.getItem('description')} img={localStorage.getItem('img')} id={idea.id}/>
+		  <ModifieIdea title={localStorage.getItem('title')} description={localStorage.getItem('description')} img={localStorage.getItem('img')} id={idea.id} tags={localStorage.getItem('tags')} />
 		  </CardActions>
 
     </Card>

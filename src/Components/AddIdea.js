@@ -125,6 +125,17 @@ const AddIdea = (props) => {
     })
   }
 
+  const [tags, setTags] = useState({
+    tags: '',
+    error: false,
+  })
+
+  const tagsChange = (e) => {
+    setTags((tags) => {
+      return { ...tags, tags: e.target.value }
+    })
+  }
+
   const validateFrom = () => {
 	  var isValid = false;
 
@@ -164,6 +175,7 @@ const AddIdea = (props) => {
     const form_data = new FormData();
     form_data.append('title', title['title']);
     form_data.append('description', description['description']);
+    form_data.append('tags', tags['tags']);
     form_data.append('files', values.imgFile , values.imgFile.name );
 
 	// Call the API from Redux 
@@ -227,6 +239,21 @@ const AddIdea = (props) => {
             onChange={descriptionChange}
 			error={description['error']}
           />
+
+          <TextField
+            required
+                autoFocus
+                multiline="true"
+                margin="dense"
+                id="tags"
+                name="tags"
+                label={t('tags')}
+                type="text"
+                fullWidth
+                value={tags['tags']}
+                onChange={tagsChange}
+          error={tags['error']}
+              />
 
           <Grid item md={12} xs={12} >
               <Card className={classes.cadre}>
