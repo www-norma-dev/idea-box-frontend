@@ -17,6 +17,7 @@ export function loadIdea (){
 
 export function AddIdea (form_data){
 	return(dispatch)=>{
+		console.log(form_data)
 		return axios.post(process.env.REACT_APP_URL_API+'idea/', form_data, {
 			headers: {
 			  'Content-Type': 'application/json',

@@ -64,9 +64,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
-
 const AddIdea = (props) => {
     const classes = useStyles();
 
@@ -151,7 +148,7 @@ const AddIdea = (props) => {
 		  })
 	}
 
-	 // Checke Description if not null show error else remove error
+	 // Checke tags if not null show error else remove error
 	 if (description['description'] == '') {
 		setDescription((description) => {
 		  return { ...description, error: true }
@@ -162,6 +159,17 @@ const AddIdea = (props) => {
 			return { ...description, error: false }
 		  })
 	  }
+
+    if (tags['tags'] == '') {
+      setTags((tags) => {
+        return { ...tags, error: true }
+      })
+      isValid = true;
+      } else{
+      setTags((tags) => {
+        return { ...tags, error: false }
+        })
+      }
 
 	return isValid;
   }
@@ -201,7 +209,7 @@ const AddIdea = (props) => {
         {t('New Idea')}
       </Button>
       <Dialog
-	   maxWidth="lg"
+	      maxWidth="lg"
         fullWidth="true"
         open={open}
         onClose={handleClose}
@@ -214,6 +222,7 @@ const AddIdea = (props) => {
 
           <TextField
             autoFocus
+            required
             margin="dense"
             id="title"
             name="title"
@@ -226,8 +235,7 @@ const AddIdea = (props) => {
 			
           />
           <TextField
-		  	required
-            autoFocus
+		  	    required
             multiline="true"
             margin="dense"
             id="description"
@@ -237,22 +245,20 @@ const AddIdea = (props) => {
             fullWidth
             value={description['description']}
             onChange={descriptionChange}
-			error={description['error']}
+		      	error={description['error']}
           />
 
           <TextField
-            required
-                autoFocus
-                multiline="true"
-                margin="dense"
-                id="tags"
-                name="tags"
-                label={t('tags')}
-                type="text"
-                fullWidth
-                value={tags['tags']}
-                onChange={tagsChange}
-          error={tags['error']}
+            multiline="true"
+            margin="dense"
+            id="tags"
+            name="tags"
+            label={t('tags')}
+            type="text"
+            fullWidth
+            value={tags['tags']}
+            onChange={tagsChange}
+            error={tags['error']}
               />
 
           <Grid item md={12} xs={12} >

@@ -129,6 +129,17 @@ const ModifieIdea = (props) => {
     })
   }
 
+  const [tags, setTags] = useState({
+    tags: props.tags,
+    error: false,
+  })
+
+  const tagsChange = (e) => {
+    setTags((tags) => {
+      return { ...tags, tags: e.target.value }
+    })
+  }
+
   const validateFrom = () => {
     if (title['title'] == '') {
       setTitle((title) => {
@@ -152,6 +163,7 @@ const ModifieIdea = (props) => {
 		const form_data = new FormData();
 		form_data.append('title', title['title']);
 		form_data.append('description', description['description']);
+    form_data.append('tags', tags['tags']);
 		if(values.imgFile !== ''){
 			form_data.append('files', values.imgFile , values.imgFile.name );
 		}
@@ -212,6 +224,18 @@ const ModifieIdea = (props) => {
             value={description['description']}
             onChange={descriptionChange}
           />
+
+          <TextField
+            multiline="true"
+            margin="dense"
+            id="tags"
+            name="tags"
+            label="tags"
+            type="text"
+            fullWidth
+            value={tags['tags']}
+            onChange={tagsChange}
+          />    
 
           <Grid item md={12} xs={12} >
               <Card className={classes.cadre}>
