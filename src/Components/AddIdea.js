@@ -30,6 +30,7 @@ import {
 import * as actionCreatore from "../store/actions/actions"
 import {connect} from 'react-redux'
 import { useTranslation } from 'react-i18next';
+import { EmailRounded } from '@material-ui/icons'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -125,6 +126,17 @@ const AddIdea = (props) => {
     })
   }
 
+  const [email, setEmail] = useState({
+    email: '',
+    error: false,
+  })
+
+  const emailChange = (e) => {
+    setEmail((email) => {
+      return { ...email, email: e.target.value }
+    })
+  }
+
   const validateFrom = () => {
 	  var isValid = false;
 
@@ -152,6 +164,18 @@ const AddIdea = (props) => {
 		  })
 	  }
 
+    	 // Checke email if not null show error else remove error
+	 if (email['email'] == '') {
+		setEmail((email) => {
+		  return { ...email, error: true }
+		})
+		isValid = true;
+	  } else{
+		setEmail((email) => {
+			return { ...email, error: false }
+		  })
+	  }
+
 	return isValid;
   }
 
@@ -164,6 +188,7 @@ const AddIdea = (props) => {
     const form_data = new FormData();
     form_data.append('title', title['title']);
     form_data.append('description', description['description']);
+    form_data.append('email', email['email']);
     form_data.append('files', values.imgFile , values.imgFile.name );
 
 	// Call the API from Redux 
@@ -214,8 +239,7 @@ const AddIdea = (props) => {
 			
           />
           <TextField
-		  	required
-            autoFocus
+		    	  required
             multiline="true"
             margin="dense"
             id="description"
@@ -226,6 +250,20 @@ const AddIdea = (props) => {
             value={description['description']}
             onChange={descriptionChange}
 			error={description['error']}
+          />
+
+          <TextField
+            required
+            multiline="true"
+            margin="dense"
+            id="email"
+            name="email"
+            label={t('email')}
+            type="text"
+            fullWidth
+            value={email['email']}
+            onChange={emailChange}
+            error={email['error']}
           />
 
           <Grid item md={12} xs={12} >

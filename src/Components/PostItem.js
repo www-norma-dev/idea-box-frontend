@@ -86,7 +86,7 @@ export default function PostItem(props) {
           <CardMedia
             className={classes.media}
             image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
-            title="Paella dish"
+            title={props.title}
           />
           <CardContent style={{maxHeight: '200px' }}>
             <Typography variant="h5">{props.title}</Typography>
@@ -99,6 +99,7 @@ export default function PostItem(props) {
             >
               {props.description}
             </Typography>
+            <Typography>{props.email}</Typography>
           </CardContent>
         </CardActionArea>
 
