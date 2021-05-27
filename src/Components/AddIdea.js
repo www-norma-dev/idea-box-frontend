@@ -239,8 +239,7 @@ const AddIdea = (props) => {
 			
           />
           <TextField
-		    	required
-            autoFocus
+		    	  required
             multiline="true"
             margin="dense"
             id="description"

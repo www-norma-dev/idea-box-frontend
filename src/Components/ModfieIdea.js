@@ -129,6 +129,17 @@ const ModifieIdea = (props) => {
     })
   }
 
+  const [email, setEmail] = useState({
+    email: '',
+    error: false,
+  })
+
+  const emailChange = (e) => {
+    setEmail((email) => {
+      return { ...email, email: e.target.value }
+    })
+  }
+
   const validateFrom = () => {
     if (title['title'] == '') {
       setTitle((title) => {
@@ -152,6 +163,7 @@ const ModifieIdea = (props) => {
 		const form_data = new FormData();
 		form_data.append('title', title['title']);
 		form_data.append('description', description['description']);
+    form_data.append('email', email['email']);
 		if(values.imgFile !== ''){
 			form_data.append('files', values.imgFile , values.imgFile.name );
 		}
@@ -201,7 +213,6 @@ const ModifieIdea = (props) => {
             onChange={titleChange}
           />
           <TextField
-            autoFocus
             multiline="true"
             margin="dense"
             id="description"
@@ -211,6 +222,20 @@ const ModifieIdea = (props) => {
             fullWidth
             value={description['description']}
             onChange={descriptionChange}
+          />
+
+          <TextField
+            required
+            multiline="true"
+            margin="dense"
+            id="email"
+            name="email"
+            label={t('email')}
+            type="text"
+            fullWidth
+            value={email['email']}
+            onChange={emailChange}
+            error={email['error']}
           />
 
           <Grid item md={12} xs={12} >
