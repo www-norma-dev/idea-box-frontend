@@ -10,14 +10,10 @@ import Select from '@material-ui/core/Select'
 import BackupIcon from '@material-ui/icons/Backup'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import AddIcon from '@material-ui/icons/Add'
-import axios from 'axios'
 import {
-  Box,
   Button,
-  Breadcrumbs,
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Divider,
   Grid,
@@ -30,7 +26,7 @@ import {
 import * as actionCreatore from "../store/actions/actions"
 import {connect} from 'react-redux'
 import { useTranslation } from 'react-i18next';
-import { EmailRounded } from '@material-ui/icons'
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -63,10 +59,6 @@ const useStyles = makeStyles((theme) => ({
     width: 46,
   },
 }));
-
-
-
-
 
 const AddIdea = (props) => {
     const classes = useStyles();
@@ -137,9 +129,10 @@ const AddIdea = (props) => {
     })
   }
 
-  const validateFrom = () => {
-	  var isValid = false;
+    const emailRef = React.createRef();
 
+    const validateFrom = () => {
+      var isValid = false;
 	// Checker Title if not null show error else remove error
     if (title['title'] == '') {
       setTitle((title) => {
@@ -161,18 +154,6 @@ const AddIdea = (props) => {
 	  } else{
 		setDescription((description) => {
 			return { ...description, error: false }
-		  })
-	  }
-
-    	 // Checke email if not null show error else remove error
-	 if (email['email'] == '') {
-		setEmail((email) => {
-		  return { ...email, error: true }
-		})
-		isValid = true;
-	  } else{
-		setEmail((email) => {
-			return { ...email, error: false }
 		  })
 	  }
 
@@ -201,7 +182,6 @@ const AddIdea = (props) => {
   }
 
   const { t, i18n } = useTranslation();
-
   return (
     <Grid item>
       <Button
@@ -214,7 +194,7 @@ const AddIdea = (props) => {
         {t('New Idea')}
       </Button>
       <Dialog
-	   maxWidth="lg"
+	      maxWidth="lg"
         fullWidth="true"
         open={open}
         onClose={handleClose}
@@ -226,6 +206,7 @@ const AddIdea = (props) => {
           <DialogContentText></DialogContentText>
 
           <TextField
+          required
             autoFocus
             margin="dense"
             id="title"
@@ -237,7 +218,7 @@ const AddIdea = (props) => {
             error={title['error']}
             onChange={titleChange}
 			
-          />
+        />        
           <TextField
 		    	  required
             multiline="true"
@@ -249,22 +230,25 @@ const AddIdea = (props) => {
             fullWidth
             value={description['description']}
             onChange={descriptionChange}
-			error={description['error']}
+			      error={description['error']}
           />
-
-          <TextField
-            required
+         
+          <ValidatorForm> 
+          <TextValidator
+		    	  required
+            ref={emailRef}
             multiline="true"
-            margin="dense"
             id="email"
             name="email"
             label={t('email')}
             type="text"
-            fullWidth
             value={email['email']}
             onChange={emailChange}
+            validators={['required', 'isEmail']}
+            errorMessages={['this field is required', 'email is not valid']}
             error={email['error']}
           />
+           </ValidatorForm>
 
           <Grid item md={12} xs={12} >
               <Card className={classes.cadre}>
