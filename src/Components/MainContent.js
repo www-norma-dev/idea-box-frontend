@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import PostItem from '../Components/PostItem'
 import AddIdea from '../Components/AddIdea'
+import Hero from '../Components/Hero'
 import axios from 'axios';
 import * as actionCreatore from "../store/actions/actions"
 import {connect} from 'react-redux'
@@ -38,7 +39,8 @@ const  MainContent = (props) =>{
     
 
     return (
-        <div className="container" direction="row" justify="center" alignItems="center" style={{ marginTop: 20 , marginLeft:20}}>
+        <div className="container-fluid" direction="row" justify="center" alignItems="center" style={{ marginTop: 20 , marginLeft:20}}>
+            <Hero/>            
             <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
                  <Typography variant="h4" component="h3" gutterBottom align="center" >

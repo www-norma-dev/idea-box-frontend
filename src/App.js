@@ -18,7 +18,7 @@ function App() {
   return (
 
     <ThemeContext.Provider value={contextValue}>
-      <ThemeProvider theme={darkMode}>
+      <ThemeProvider theme={yellowMode}>
      	 <Routes />
       </ThemeProvider>
     </ThemeContext.Provider>
