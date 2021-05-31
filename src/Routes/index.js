@@ -6,6 +6,7 @@ import SignUp from '../page/SignUp'
 import ChangePassword from '../page/ChangePassword'
 import ForgotPassword from '../page/ForgotPassword'
 import IdeaDetail from '../page/IdeaDetail'
+import IdeasList from '../Components/IdeasList'
 
 
 function Routes() {
@@ -16,9 +17,10 @@ function Routes() {
         <Route path="/home" component={Home} exact />
         <Route path="/login" component={SignInSide} exact />
         <Route path="/SignUp" component={SignUp} exact />
+        <Route path="/list" component={IdeasList} exact />
         <Route path="/ChangePassword" component={ChangePassword} exact />
         <Route path="/ForgotPassword" component={ForgotPassword} exact />
-		<Route path="/detail/:ideaNumber" render={(props) => <IdeaDetail {...props}/>}/>
+		    <Route path="/detail/:ideaNumber" render={(props) => <IdeaDetail {...props}/>}/>
 
       </Switch>
     </Router>

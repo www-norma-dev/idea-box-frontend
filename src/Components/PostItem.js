@@ -1,30 +1,22 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
-import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
-import CardMedia from '@material-ui/core/CardMedia'
-import CardContent from '@material-ui/core/CardContent'
-import CardActions from '@material-ui/core/CardActions'
-import Collapse from '@material-ui/core/Collapse'
-import Avatar from '@material-ui/core/Avatar'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
-import { red } from '@material-ui/core/colors'
+import {
+  Box,
+  CardMedia,
+  CardContent,
+  Card,
+  Typography,
+  Grid,
+  CardActionArea
+ } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite'
-import ShareIcon from '@material-ui/icons/Share'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import Grid from '@material-ui/core/Grid'
-import CardActionArea from '@material-ui/core/CardActionArea'
 import { useHistory } from "react-router-dom";
-import { BrowserRouter as Redirect } from 'react-router-dom'
-import EditIcon from '@material-ui/icons/Edit';
-// import ModifieIdea from '.. Components/ModifieIdea'
 import ModifieIdea from '../Components/ModfieIdea'
+import bootstrap from 'bootstrap';
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    width: 380,
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 27,
@@ -45,8 +37,15 @@ const useStyles = makeStyles((theme) => ({
     transform: 'rotate(180deg)',
   },
   avatar: {
-    backgroundColor: red[300],
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.secondary,
   },
+  production: {
+    backgroundColor: '#cef57a',
+    color: '#315c2a',
+    padding: '5px 25px 5px',
+    fontSize: 12,
+    }
 }))
 
 export default function PostItem(props) {
@@ -68,55 +67,35 @@ export default function PostItem(props) {
   return (
     <Grid sm={6} xs={12} md={4}>
       <Card className={classes.root}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title={props.title}
-          subheader="September 14, 2021"
-        />
+
         <CardActionArea onClick={showDetail}>
           <CardMedia
             className={classes.media}
             image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
             title={props.title}
           />
-          <CardContent style={{maxHeight: '200px' }}>
+          <CardContent>
             <Typography variant="h5">{props.title}</Typography>
             <Typography
               variant="body2"
               color="textSecondary"
               align="left"
               component="p"
-			  style={{overflow: "hidden", textOverflow: "ellipsis", maxHeight: '100px' ,  whiteSpace: "pre-line" }}
+			        style={{overflow: "hidden", textOverflow: "ellipsis",height: '100px' ,  whiteSpace: "pre-line" }}
             >
               {props.description}
             </Typography>
-            <Typography>{props.email}</Typography>
+        
+            <div className=" mt-5 d-flex justify-content-between align-items-end m-auto">
+            <Box component="span"  className={classes.production}>
+              <b>{props.status}</b>
+            </Box>
+            <Typography color="textSecondary">{props.date}</Typography>
+        </div>
           </CardContent>
-        </CardActionArea>
-
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" onClick={likeButton}>
-            {like ? (
-              <FavoriteIcon style={{ color: '#ff0505' }} />
-            ) : (
-              <FavoriteIcon />
-            )}
-          </IconButton>
-		  {/* <ModifieIdea /> */}
-		  <ModifieIdea title={props.title} description={props.description} img={props.img} id={props.id}/>
-    
-   
-        </CardActions>
+        </CardActionArea>    
       </Card>
+      
     </Grid>
   )
 }

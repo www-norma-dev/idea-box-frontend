@@ -7,7 +7,7 @@ export function loadIdea (){
 		 then(((response)=> {
 			 dispatch({
 				type:"GET_IDEA",
-				idea : response.data.results
+				ideas : response.data.results
 			} )
 		 }))
 	}
