@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 		const classes = useStyles();
 
 		return (
-        <div className={classes.root}>
+        <div className={classes.root} style={{ background: 'white'}} >
           <AppBar  style={{ background: 'transparent'}} class="container">
             <Toolbar>
               <img src={logo} class="d-inline-block align-top" alt=""/>

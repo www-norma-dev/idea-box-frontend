@@ -103,7 +103,7 @@ const Hero = () => {
                         <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
                     </Paper>
                 </div>
-                <div className="row" style={{ marginTop: 150, marginBottom: 400}}>
+                <div className="row" style={{ marginTop: 150, paddingBottom: 400}}>
                     <div className="col-3">
                         <Count number="15" name ="Ideas" color="#ee6c20" icon="book-open"/>
                     </div>
