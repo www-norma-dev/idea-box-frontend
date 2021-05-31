@@ -42,7 +42,7 @@ const  IdeasList = (props) =>{
                         subtitle1
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={12} >
+                    <Grid item xs={12} sm={12}  align="center">
                         <AddIdea/>
                         <Button variant="outlined" color="primary"  hidden>
                             {t('Your Idea')}
