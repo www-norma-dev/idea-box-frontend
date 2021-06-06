@@ -54,6 +54,7 @@ const  IdeasList = (props) =>{
                         props.ideas != undefined ?
                         props.ideas.map((option) => (
                             <PostItem id={option.id} 
+                            key={option.id} 
                             img={option.files} 
                             title={option.title} 
                             description={option.description} 

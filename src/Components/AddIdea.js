@@ -4,10 +4,6 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
-import BackupIcon from '@material-ui/icons/Backup'
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import AddIcon from '@material-ui/icons/Add'
 import {
@@ -77,9 +73,6 @@ const AddIdea = (props) => {
 
 
   const getFileName = (e) => {
-	  
-
-
     if(e.target.files[0])
     {
       values.imgFile = e.target.files[0];
@@ -95,7 +88,6 @@ const AddIdea = (props) => {
   const handleClose = async () => { setOpen(false) }
 
   //declare the form variables
-
   const [title, setTitle] = useState({
     title: '',
     error: false,
@@ -133,51 +125,44 @@ const AddIdea = (props) => {
 
     const validateFrom = () => {
       var isValid = false;
-	// Checker Title if not null show error else remove error
-    if (title['title'] == '') {
+	    // Checker Title if not null show error else remove error
+      if (title['title'] == '') {
+        setTitle((title) => {
+          return { ...title, error: true }
+        })
+        isValid=  true;
+      } else{
       setTitle((title) => {
-        return { ...title, error: true }
+        return { ...title, error: false }
+        })
+      }
+
+      // Checke Description if not null show error else remove error
+      if (description['description'] == '') {
+      setDescription((description) => {
+        return { ...description, error: true }
       })
-      isValid=  true;
-    } else{
-		setTitle((title) => {
-			return { ...title, error: false }
-		  })
-	}
-
-	 // Checke Description if not null show error else remove error
-	 if (description['description'] == '') {
-		setDescription((description) => {
-		  return { ...description, error: true }
-		})
-		isValid = true;
-	  } else{
-		setDescription((description) => {
-			return { ...description, error: false }
-		  })
-	  }
-
-	return isValid;
-  }
+      isValid = true;
+      } else{
+      setDescription((description) => {
+        return { ...description, error: false }
+        })
+      }
+      return isValid;
+    }
 
   const sendForm = async () =>  {
-    
-
-
     if (validateFrom() != true) {
-
-    const form_data = new FormData();
-    form_data.append('title', title['title']);
-    form_data.append('description', description['description']);
-    form_data.append('email', email['email']);
-    form_data.append('files', values.imgFile , values.imgFile.name );
-
-	// Call the API from Redux 
-	props.AddIdea(form_data).then(res => {
-		props.loadIdea();
-	});
-
-    handleClose()
+      const form_data = new FormData();
+      form_data.append('title', title['title']);
+      form_data.append('description', description['description']);
+      form_data.append('email', email['email']);
+      form_data.append('files', values.imgFile , values.imgFile.name );
+      // Call the API from Redux 
+      props.AddIdea(form_data).then(res => {
+        props.loadIdea();
+      });
+      handleClose()
     }
   }
 
@@ -195,7 +180,7 @@ const AddIdea = (props) => {
       </Button>
       <Dialog
 	      maxWidth="lg"
-        fullWidth="true"
+        fullWidth={true}
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
@@ -233,21 +218,23 @@ const AddIdea = (props) => {
 			      error={description['error']}
           />
          
-          <ValidatorForm> 
-          <TextValidator
-		    	  required
-            ref={emailRef}
-            multiline="true"
-            id="email"
-            name="email"
-            label={t('email')}
-            type="text"
-            value={email['email']}
-            onChange={emailChange}
-            validators={['required', 'isEmail']}
-            errorMessages={['this field is required', 'email is not valid']}
-            error={email['error']}
-          />
+          <ValidatorForm
+            onSubmit={()=>{}}
+            onError={errors => console.log(errors)}> 
+            <TextValidator
+              required
+              ref={emailRef}
+              multiline="true"
+              id="email"
+              name="email"
+              label={t('email')}
+              type="text"
+              value={email['email']}
+              onChange={emailChange}
+              validators={['required', 'isEmail']}
+              errorMessages={['this field is required', 'email is not valid']}
+              error={email['error']}
+            />
            </ValidatorForm>
 
           <Grid item md={12} xs={12} >

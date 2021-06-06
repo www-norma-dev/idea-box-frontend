@@ -7,7 +7,7 @@ import {
   Link,
   Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import MainContent from '../Components/MainContent';
+import Hero from '../Components/Hero';
 import logo from "../static/img/logo.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -56,10 +56,8 @@ const useStyles = makeStyles((theme) => ({
                 </Button>
             </Toolbar>
           </AppBar>
-          <Container maxWidth={false} style={{paddingLeft: 0}}>
-            <Typography>
-              <MainContent/>
-            </Typography>
+          <Container maxWidth={false} style={{paddingLeft: 0, marginTop: 20}}>
+              <Hero/>
           </Container>
          </div>
 

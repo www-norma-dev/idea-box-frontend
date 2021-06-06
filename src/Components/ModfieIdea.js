@@ -190,7 +190,7 @@ const ModifieIdea = (props) => {
 
       <Dialog
 	  	   maxWidth="lg"
-        fullWidth="true"
+        fullWidth={true}
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"

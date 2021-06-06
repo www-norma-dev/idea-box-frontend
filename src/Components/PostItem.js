@@ -65,7 +65,7 @@ export default function PostItem(props) {
   }
 
   return (
-    <Grid sm={6} xs={12} md={4}>
+    <Grid item sm={6} xs={12} md={4}>
       <Card className={classes.root}>
 
         <CardActionArea onClick={showDetail}>
