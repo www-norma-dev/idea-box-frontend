@@ -29,12 +29,16 @@ const useStyles = makeStyles((theme) => ({
 
 const IdeaDetail = (props) => {
 
+		let { ideaNumber } = useParams();
 		const classes = useStyles();
 		const [like, setLike] = useState(false);
-		let { ideaNumber } = useParams();
 		const [idea, setIdea] = useState({});
+		const [ideaStatus, setIdeaStatus] = useState("Proposition");
+	
+		const updateIdea = (data) => {
+			setIdea({ ...idea, ...data})
+		}
 		
-
 		useEffect (  () =>  {
 			const request =  axios.get(process.env.REACT_APP_URL_API+'idea/'+ideaNumber+"/", {
 				headers: {
@@ -42,12 +46,7 @@ const IdeaDetail = (props) => {
 				},
 			  }).then(res => {
 				setIdea(res.data);
-				localStorage.setItem('title' ,res.data.title);
-				localStorage.setItem('description' ,res.data.description);
-				localStorage.setItem('email' ,res.data.email);
-				localStorage.setItem('img' ,res.data.files);
-				localStorage.setItem('status' ,res.data.status_name);
-				localStorage.setItem('app_url' ,res.data.app_url);
+				res.data.status_name != undefined && setIdeaStatus(res.data.status_name);
 			  })
 			  .catch(err => console.log(err))
 		},[ideaNumber])
@@ -63,10 +62,9 @@ const IdeaDetail = (props) => {
 			<Card className={classes.root} style={{marginLeft:250, marginRight: 200, marginTop:100}}>
 				<CardMedia
 				component="img"
-				alt="Contemplative Reptile"
+				alt=""
 				height="400"
 				image= { (idea.files == "" || idea.files== null)  ? "https://source.unsplash.com/random" : idea.files}
-				title="Contemplative Reptile"
 				/>
 				<CardContent>
 					<Grid container spacing={3}>
@@ -76,18 +74,28 @@ const IdeaDetail = (props) => {
 							</Typography>
 							<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
 								{idea.description}
-								{idea.email}
 							</Typography>
 						</Grid>
-						<Grid item xs={3}>
+						<Grid item xs={3} style={{ minWith: 200}}>
 						<MenuList>
-							<MenuItem className="text-white bg-dark">  
-								<Link href={localStorage.getItem('app_url')}>
-								<b>Open App</b>
-							</Link>
+							{
+								idea.app_url != null && 
+								<Link href={idea.app_url }>
+									<MenuItem className="text-white bg-dark">  
+										<b>Open App</b>
+									</MenuItem>
+								</Link>
+							}
+							<MenuItem>
+								<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
+									<b>Email: </b>{idea.email}
+								</Typography>
 							</MenuItem>
-							<MenuItem><b>Email: </b>{localStorage.getItem('email')}</MenuItem>
-							<MenuItem><b>Status: </b>{localStorage.getItem('status')}</MenuItem>
+							<MenuItem>
+								<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
+									<b>Status: </b>{ideaStatus}
+								</Typography>
+							</MenuItem>
 						</MenuList>
 						</Grid>
 					</Grid>
@@ -100,11 +108,13 @@ const IdeaDetail = (props) => {
 						<FavoriteIcon />
 						)}
 					</IconButton>
-					<ModifieIdea title={localStorage.getItem('title')} 
-						description={localStorage.getItem('description')} 
-						img={localStorage.getItem('img')} 
-						email={localStorage.getItem('email')} 
-						id={idea.id}/>
+					{ idea.title != null && 
+					<ModifieIdea title={idea.title}
+						description={idea.description} 
+						img={idea.files} 
+						email={idea.email}  
+						id={ideaNumber}
+						updateIdea={updateIdea}/>}
 				</CardActions>
     		</Card>
          </div>

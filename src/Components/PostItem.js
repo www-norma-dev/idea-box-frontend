@@ -9,10 +9,7 @@ import {
   Grid,
   CardActionArea
  } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { useHistory } from "react-router-dom";
-import ModifieIdea from '../Components/ModfieIdea'
 import bootstrap from 'bootstrap';
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
+import React, { useState, useEffect } from 'react';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import AddIcon from '@material-ui/icons/Add'
+import AddIcon from '@material-ui/icons/Add';
 import {
   Button,
   Card,
@@ -68,17 +68,21 @@ const AddIdea = (props) => {
     imgFile:'',
   });
 
-  const [img, setimg] = useState('');
-
+  //const [img, setimg] = useState('');
 
 
   const getFileName = (e) => {
     if(e.target.files[0])
     {
-      values.imgFile = e.target.files[0];
-      setimg(e.target.files[0]);
-      setimg(URL.createObjectURL(e.target.files[0]));
-      values.img = e.target.files[0].name;
+      setValues({ 
+        ...values, 
+        imgFile: e.target.files[0],
+        img: e.target.name});
+      //values.imgFile = e.target.files[0];
+      //setValues({ ...values, img: e.target.name});
+      //setimg(e.target.files[0]);
+      //setimg(URL.createObjectURL(e.target.files[0]));
+      //values.img = e.target.files[0].name;
     }
  }
 
@@ -206,7 +210,7 @@ const AddIdea = (props) => {
         />        
           <TextField
 		    	  required
-            multiline="true"
+            multiline={true}
             margin="dense"
             id="description"
             name="description"
@@ -224,7 +228,7 @@ const AddIdea = (props) => {
             <TextValidator
               required
               ref={emailRef}
-              multiline="true"
+              multiline={true}
               id="email"
               name="email"
               label={t('email')}
@@ -258,7 +262,7 @@ const AddIdea = (props) => {
                   </div>
                 </div>
                 <CardMedia
-                  className={classes.cover} image={img} title={t('Select an image')}
+                  className={classes.cover} image={values.img} title={t('Select an image')}
                 />
               </Card>
             </Grid>

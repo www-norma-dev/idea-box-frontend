@@ -61,7 +61,7 @@ const  IdeasList = (props) =>{
                             email={option.email}
                             date={option.date}
                             avatar={option.avatar_name} 
-                            status={option.status_name} />
+                            status={option.status_name != undefined ? option.status_name : "Proposition"} />
                         )) : ""}
                 </Grid>
             </div>

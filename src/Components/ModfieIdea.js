@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
-import BackupIcon from '@material-ui/icons/Backup'
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import AddIcon from '@material-ui/icons/Add'
-import axios from 'axios'
 import {
   Box,
   Button,
-  Breadcrumbs,
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Divider,
   Grid,
   Typography,
-  // InputAdornment,
   IconButton,
   TextField,
   makeStyles
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-
-import * as actionCreatore from "../store/actions/actions"
-import {connect} from 'react-redux'
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import * as actionCreatore from "../store/actions/actions";
+import {connect} from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 
@@ -66,40 +56,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-
-
 const ModifieIdea = (props) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
   const [open, setOpen] = useState(false)
 
-  const [values, setValues] = useState({
-	isNull: props.name == null ? true : false,
-    name:'',
-    state: 'Envoyé',
-    img: "",
-    imgFile:'',
+  const [imgValues, setImgValues] = useState({
+    imgFile: '',
+    url: props.img,
+    name: props.img.name
   });
 
-  const [img, setimg] = useState(props.img);
-
-
-
-  const getFileName = (e) => {
-
-
-    if(e.target.files[0])
+  const getFileName = (event) => {
+    if(event.target.files[0])
     {
-      values.imgFile = e.target.files[0];
-      setimg(e.target.files[0]);
-      setimg(URL.createObjectURL(e.target.files[0]));
-      values.img = e.target.files[0].name;
-
+      setImgValues({ 
+        ...imgValues, 
+        imgFile: event.target.files[0],
+        url: URL.createObjectURL(event.target.files[0]),
+        name: event.target.name});
     }
- }
-
+  }
 
   const openDialog = () => {setOpen(true)  }
 
@@ -112,10 +89,8 @@ const ModifieIdea = (props) => {
     error: false,
   })
 
-  const titleChange = (e) => {
-    setTitle((title) => {
-      return { ...title, title: e.target.value }
-    })
+  const titleChange = (event) => {
+    setTitle({ ...title, title: event.target.value })
   }
 
   const [description, setDescription] = useState({
@@ -123,57 +98,48 @@ const ModifieIdea = (props) => {
     error: false,
   })
 
-  const descriptionChange = (e) => {
-    setDescription((description) => {
-      return { ...description, description: e.target.value }
-    })
+  const descriptionChange = (event) => {
+    setDescription({ ...description, description: event.target.value })
   }
 
   const [email, setEmail] = useState({
-    email: '',
+    email: props.email,
     error: false,
   })
 
-  const emailChange = (e) => {
-    setEmail((email) => {
-      return { ...email, email: e.target.value }
-    })
+  const emailChange = (event) => {
+    setEmail({ ...email, email: event.target.value })
   }
 
   const validateFrom = () => {
     if (title['title'] == '') {
-      setTitle((title) => {
-        return { ...title, error: true }
-      })
+      setTitle({ ...title, error: true })
       return true
     } else {
-      setTitle((title) => {
-        return { ...title, error: false }
-      })
+      setTitle({ ...title, error: false })
       return false
     }
   }
 
   const sendForm = async () =>  {
-    
-
-
     if (validateFrom() != true) {
+      const form_data = new FormData();
+      form_data.append('title', title['title']);
+      form_data.append('description', description['description']);
+      form_data.append('email', email['email']);
+      if(imgValues.imgFile !== ''){
+        form_data.append('files', imgValues.imgFile , imgValues.imgFile.name);
+      }
+      props.updateIdea({title: title['title'], 
+        description: description['description'],
+        email: email['email'],
+        files: imgValues.url})
 
-		const form_data = new FormData();
-		form_data.append('title', title['title']);
-		form_data.append('description', description['description']);
-    form_data.append('email', email['email']);
-		if(values.imgFile !== ''){
-			form_data.append('files', values.imgFile , values.imgFile.name );
-		}
-	
-		// Call the API from Redux
-		props.ModifeIdea(form_data, props.id).then(res =>{
-			props.loadIdea();
-		});
-
-     	 handleClose()
+      // Call the API from Redux
+      props.ModifeIdea(form_data, props.id).then(res =>{
+        props.loadIdea();
+      });
+     	handleClose()
     }
   }
   const { t, i18n } = useTranslation();
@@ -213,7 +179,7 @@ const ModifieIdea = (props) => {
             onChange={titleChange}
           />
           <TextField
-            multiline="true"
+            multiline={true}
             margin="dense"
             id="description"
             name="description"
@@ -221,12 +187,13 @@ const ModifieIdea = (props) => {
             type="text"
             fullWidth
             value={description['description']}
+            error={description['error']}
             onChange={descriptionChange}
           />
 
           <TextField
             required
-            multiline="true"
+            multiline={true}
             margin="dense"
             id="email"
             name="email"
@@ -234,8 +201,8 @@ const ModifieIdea = (props) => {
             type="text"
             fullWidth
             value={email['email']}
-            onChange={emailChange}
             error={email['error']}
+            onChange={emailChange}
           />
 
           <Grid item md={12} xs={12} >
@@ -243,7 +210,7 @@ const ModifieIdea = (props) => {
                 <div className={classes.details}>
                   <CardContent className={classes.content}>
                     <Typography component="h5" variant="h5">
-                      {values.img}
+                      {imgValues.name}
                     </Typography>
                     <Typography variant="subtitle1" color="textSecondary">
                       {t('Select an image')}
@@ -259,7 +226,7 @@ const ModifieIdea = (props) => {
                   </div>
                 </div>
                 <CardMedia
-                  className={classes.cover} image={img} title={t('Select an image')}
+                  className={classes.cover} image={imgValues.url} title={t('Select an image')}
                 />
               </Card>
             </Grid>
