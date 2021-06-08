@@ -5,6 +5,8 @@ import { Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import PostItem from '../Components/PostItem';
 import AddIdea from '../Components/AddIdea';
+import ModifieIdea from '../Components/ModfieIdea';
+
 import { useTranslation } from 'react-i18next';
 import MainAppbar from '../Components/MainAppbar';
 import * as actionCreatore from "../store/actions/actions";
@@ -43,7 +45,7 @@ const  IdeasList = (props) =>{
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={12}  align="center">
-                        <AddIdea/>
+                        <ModifieIdea />
                         <Button variant="outlined" color="primary"  hidden>
                             {t('Your Idea')}
                         </Button>

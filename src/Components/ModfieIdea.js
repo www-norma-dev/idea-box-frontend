@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Dialog from '@material-ui/core/Dialog'
 import {
   Box,
   Button,
   Card,
   CardContent,
   CardMedia,
+  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -18,6 +18,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import * as actionCreatore from "../store/actions/actions";
 import {connect} from 'react-redux';
@@ -64,7 +65,7 @@ const ModifieIdea = (props) => {
   const [imgValues, setImgValues] = useState({
     imgFile: '',
     url: props.img,
-    name: props.img.name
+    name: '',
   });
 
   const getFileName = (event) => {
@@ -130,15 +131,25 @@ const ModifieIdea = (props) => {
       if(imgValues.imgFile !== ''){
         form_data.append('files', imgValues.imgFile , imgValues.imgFile.name);
       }
-      props.updateIdea({title: title['title'], 
+
+      // Call the callback function to update parent idea values
+      if (props.updateIdea) {
+        props.updateIdea({title: title['title'], 
         description: description['description'],
         email: email['email'],
         files: imgValues.url})
-
+      }
       // Call the API from Redux
-      props.ModifeIdea(form_data, props.id).then(res =>{
-        props.loadIdea();
-      });
+      if (props.id){
+        props.ModifeIdea(form_data, props.id).then(res =>{
+          props.loadIdea();
+        });
+      }
+      else {
+        props.AddIdea(form_data).then(res => {
+          props.loadIdea();
+        });
+      }
      	handleClose()
     }
   }
@@ -147,13 +158,22 @@ const ModifieIdea = (props) => {
 
   return (
     <Grid item>
-		
-		<IconButton
-			onClick={openDialog}
-          >
+      {
+        props.id ?
+          <IconButton
+            onClick={openDialog}>
             <EditIcon />
-          </IconButton>	
-
+          </IconButton>
+        :      
+          <Button
+            onClick={openDialog}
+            variant="contained"
+            color="primary"
+            startIcon={<AddIcon />}
+            style={{ margin: 20 }}>
+              {t('New Idea')}
+          </Button>
+      }	
       <Dialog
 	  	   maxWidth="lg"
         fullWidth={true}
