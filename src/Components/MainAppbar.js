@@ -13,6 +13,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import SignInSide from "./SignInSide";
 import Sidebar from "./Sidebar"
+import logo from "../static/img/logo.png"
 import { useTranslation } from 'react-i18next';
 
 
@@ -147,6 +148,7 @@ const MainAppbar = props => {
               className={clsx(classes.appBar, {
                 [classes.appBarShift]: open,
               })}
+              style={{ background: 'white'}} 
             >
                 <Toolbar>
                   <IconButton
@@ -160,9 +162,8 @@ const MainAppbar = props => {
                     >
                       <MenuIcon />
                   </IconButton>
-                  <Typography variant="h6" className={classes.title}>
-                      {t('Idea Box')}
-                  </Typography>
+
+                  <img src={logo} class="d-inline-block align-top" alt=""/>
                   <div className={classes.search}>
                     <div className={classes.searchIcon}>
                       <SearchIcon />
