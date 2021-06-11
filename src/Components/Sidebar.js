@@ -115,7 +115,7 @@ const Sidebar = ({ open, setOpen }) => {
         </div>
         <Divider />
         <List>
-          {['Home'].map((text, index) => (
+          {['List'].map((text, index) => (
             <Link to={'/' + text} key={text}>
               <ListItem button key={text}>
                 <ListItemIcon>

@@ -88,17 +88,17 @@ const Hero = () => {
                 </div>
                 <div className="d-flex justify-content-between">
                     <Paper className="p-5"  variant="outlined" style={{marginRight: 15}} square>
-                        <img src={values1} class="img-fluid" alt=""/>
+                        <img src={values1} className="img-fluid" alt=""/>
                         <h3>Submit Idea</h3>
                         <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
                     </Paper>
                     <Paper className="p-5"  variant="outlined"  style={{marginRight: 15}} square>
-                        <img src={values2} class="img-fluid" alt=""/>
+                        <img src={values2} className="img-fluid" alt=""/>
                         <h3>Peer validation</h3>
                         <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
                     </Paper>
                     <Paper className="p-5" variant="outlined"style={{marginRight: 15}} square>
-                        <img src={values3} class="img-fluid" alt=""/>
+                        <img src={values3} className="img-fluid" alt=""/>
                         <h3>Navigate</h3>
                         <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
                     </Paper>

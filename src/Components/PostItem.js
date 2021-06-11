@@ -42,7 +42,13 @@ const useStyles = makeStyles((theme) => ({
     color: '#315c2a',
     padding: '5px 25px 5px',
     fontSize: 12,
-    }
+    },
+  suggestion: {
+    backgroundColor: '#7abaf5',
+    color: 'white',
+    padding: '5px 25px 5px',
+    fontSize: 12,
+  }
 }))
 
 export default function PostItem(props) {
@@ -84,7 +90,7 @@ export default function PostItem(props) {
             </Typography>
         
             <div className=" mt-5 d-flex justify-content-between align-items-end m-auto">
-            <Box component="span"  className={classes.production}>
+            <Box component="span"  className={ props.status == "Production" ? classes.production : classes.suggestion}>
               <b>{props.status}</b>
             </Box>
             <Typography color="textSecondary">{props.date}</Typography>
