@@ -70,7 +70,6 @@ export default function PostItem(props) {
   return (
     <Grid item sm={6} xs={12} md={4}>
       <Card className={classes.root}>
-
         <CardActionArea onClick={showDetail}>
           <CardMedia
             className={classes.media}
@@ -80,8 +79,7 @@ export default function PostItem(props) {
           <CardContent>
             <Typography variant="h5">{props.title}</Typography>
             <Typography
-              variant="body2"
-              color="textSecondary"
+              variant="body"
               align="left"
               component="p"
 			        style={{overflow: "hidden", textOverflow: "ellipsis",height: '100px' ,  whiteSpace: "pre-line" }}
@@ -98,7 +96,6 @@ export default function PostItem(props) {
           </CardContent>
         </CardActionArea>    
       </Card>
-      
     </Grid>
   )
 }

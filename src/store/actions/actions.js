@@ -47,4 +47,18 @@ export function ModifeIdea (form_data, ideaKey){
 }
 
 
+export function AddComment (form_data){
+	return(dispatch)=>{
+		return axios.post(process.env.REACT_APP_URL_API+'comment/', form_data, {
+			headers: {
+			'Content-Type': 'application/json',
+			},
+		}).then(res => {
+			dispatch({				
+				type:"ADD_COMMENT",
+			})
+		})
+		.catch(err => console.log(err))
+	}
+}
 
