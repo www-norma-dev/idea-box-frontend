@@ -178,7 +178,7 @@ const IdeaDetail = (props) => {
 							}
 
 							<MenuItem>
-								<div dangerouslySetInnerHTML={{__html: '<iframe src="http://localhost:3000/widget.html" width="500" height="450"></iframe>'}}></div>
+								<div dangerouslySetInnerHTML={{__html: '<iframe src="../../widget.html" width="500" height="450"></iframe>'}}></div>
 							</MenuItem>
 							<MenuItem>
 								<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
