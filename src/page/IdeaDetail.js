@@ -178,9 +178,6 @@ const IdeaDetail = (props) => {
 							}
 
 							<MenuItem>
-								<div dangerouslySetInnerHTML={{__html: '<iframe src="../../widget.html" width="500" height="450"></iframe>'}}></div>
-							</MenuItem>
-							<MenuItem>
 								<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
 									<b>Email: </b>{idea.email}
 								</Typography>
@@ -189,6 +186,9 @@ const IdeaDetail = (props) => {
 								<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
 									<b>Status: </b>{ideaStatus}
 								</Typography>
+							</MenuItem>
+							<MenuItem>
+								<div dangerouslySetInnerHTML={{__html: '<iframe src="../../widget.html" width="500" height="600"></iframe>'}}></div>
 							</MenuItem>
 						</MenuList>
 						</Grid>
