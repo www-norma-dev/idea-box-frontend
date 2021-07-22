@@ -149,7 +149,6 @@ const IdeaDetail = (props) => {
     return (
         <div className={classes.root}>
             <MainAppbar/>
-			<center></center>
 			<Card className={classes.root} style={{marginLeft:250, marginRight: 200, marginTop:100}}>
 				<CardMedia
 				component="img"
@@ -159,7 +158,7 @@ const IdeaDetail = (props) => {
 				/>
 				<CardContent>
 					<Grid container spacing={3}>
-						<Grid item xs={9}>
+						<Grid item xs={7}>
 							<Typography gutterBottom variant="h5" component="h2">
 								{idea.title}
 							</Typography>
@@ -167,7 +166,7 @@ const IdeaDetail = (props) => {
 								{idea.description}
 							</Typography>
 						</Grid>
-						<Grid item xs={3} style={{ minWith: 200}}>
+						<Grid item xs={5} style={{ minWidth: 200}}>
 						<MenuList>
 							{
 								idea.app_url != null && 
@@ -177,6 +176,10 @@ const IdeaDetail = (props) => {
 									</MenuItem>
 								</Link>
 							}
+
+							<MenuItem>
+								<div dangerouslySetInnerHTML={{__html: '<iframe src="http://localhost:3000/widget.html" width="500" height="450"></iframe>'}}></div>
+							</MenuItem>
 							<MenuItem>
 								<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
 									<b>Email: </b>{idea.email}
