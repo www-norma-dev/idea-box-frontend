@@ -188,7 +188,7 @@ const IdeaDetail = (props) => {
 								</Typography>
 							</MenuItem>
 							<MenuItem>
-								<div dangerouslySetInnerHTML={{__html: '<iframe src="../../widget.html" width="500" height="600"></iframe>'}}></div>
+								<div dangerouslySetInnerHTML={{__html: '<iframe src="../../widget.html?apiUrl=https://api-inference.huggingface.co/models/roberta-large-mnli" width="500" height="600"></iframe>'}}></div>
 							</MenuItem>
 						</MenuList>
 						</Grid>
