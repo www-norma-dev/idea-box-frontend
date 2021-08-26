@@ -14,8 +14,8 @@ import { useTranslation } from 'react-i18next';
 import * as actionCreatore from "../store/actions/actions";
 import {connect} from 'react-redux';
 import Moment from 'react-moment';
-
-
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import {
 	BrowserRouter as Router,
 
@@ -162,8 +162,9 @@ const IdeaDetail = (props) => {
 							<Typography gutterBottom variant="h5" component="h2">
 								{idea.title}
 							</Typography>
-							<Typography variant="body2" color="textSecondary" component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
-								{idea.description}
+							<Typography variant="body2"  component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
+								<ReactMarkdown children={idea.description} remarkPlugins={[remarkGfm]} />
+								
 							</Typography>
 						</Grid>
 						<Grid item xs={5} style={{ minWidth: 200}}>
