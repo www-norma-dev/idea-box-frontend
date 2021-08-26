@@ -33,6 +33,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.2",
     "react-social-login-buttons": "^3.1.2",
+    "react-syntax-highlighter": "^15.4.4",
     "reactstrap": "^8.9.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",

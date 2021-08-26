@@ -159,13 +159,10 @@ const IdeaDetail = (props) => {
 				<CardContent>
 					<Grid container spacing={3}>
 						<Grid item xs={7}>
-							<Typography gutterBottom variant="h5" component="h2">
+							<Typography gutterBottom variant="h2" component="h2">
 								{idea.title}
 							</Typography>
-							<Typography variant="body2"  component="p" style={{  textAlign: "left", whiteSpace: "pre-line"}} >
-								<ReactMarkdown children={idea.description} remarkPlugins={[remarkGfm]} />
-								
-							</Typography>
+							<ReactMarkdown children={idea.description} remarkPlugins={[remarkGfm]}  style={{  textAlign: "left"}}/>
 						</Grid>
 						<Grid item xs={5} style={{ minWidth: 200}}>
 						<MenuList>
