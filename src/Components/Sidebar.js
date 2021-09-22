@@ -12,7 +12,6 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 
@@ -115,11 +114,11 @@ const Sidebar = ({ open, setOpen }) => {
         </div>
         <Divider />
         <List>
-          {['List'].map((text, index) => (
+          {['List','Models'].map((text, index) => (
             <Link to={'/' + text} key={text}>
               <ListItem button key={text}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
