@@ -10,10 +10,11 @@ import {
   CardActionArea
  } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
-import bootstrap from 'bootstrap';
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 380,
+    width: 1300,
+    height: 350,
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 27,
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '20%', // 16:9
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -68,7 +69,7 @@ export default function ModelItem(props) {
   }
 
   return (
-    <Grid item sm={6} xs={12} md={4}>
+    <Grid item md={12}>
       <Card className={classes.root}>
         <CardActionArea onClick={showDetail}>
           <CardMedia
@@ -77,12 +78,12 @@ export default function ModelItem(props) {
             title={props.title}
           />
           <CardContent>
-            <Typography variant="h5">{props.title}</Typography>
+            <Typography variant="h2">{props.title}</Typography>
             <Typography
               variant="body"
               align="left"
-              component="p"
-			        style={{overflow: "hidden", textOverflow: "ellipsis",height: '100px' ,  whiteSpace: "pre-line" }}
+              component="h6"
+			        style={{overflow: "hidden", textOverflow: "ellipsis",height: '100px' ,  whiteSpace: "pre-line", marginTop: "20px" }}
             >
               {props.description}
             </Typography>

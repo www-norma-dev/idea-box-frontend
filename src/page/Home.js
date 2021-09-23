@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
                   How it Work
               </Link>
               <Link href="/models/" variant="h5" className="mx-3" color="inherit">
-                  Models
+                  Portfolio
               </Link>
               <Link href="#" variant="h5" className="mx-3"  color="inherit">
                   FAQ
