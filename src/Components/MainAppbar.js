@@ -3,7 +3,6 @@ import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -11,7 +10,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-// import SignInSide from "./SignInSide";
 import Sidebar from "./Sidebar"
 import logo from "../static/img/logo.png"
 import { useTranslation } from 'react-i18next';
@@ -163,7 +161,10 @@ const MainAppbar = props => {
                       <MenuIcon />
                   </IconButton>
 
-                  <img src={logo} class="d-inline-block align-top" alt=""/>
+
+                  <Link to="/" className="d-inline-block align-top" >
+                    <img src={logo} alt=""/>
+                  </Link>
                   <div className={classes.search}>
                     <div className={classes.searchIcon}>
                       <SearchIcon />

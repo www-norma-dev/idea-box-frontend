@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
               <Link href="#HowitWork" variant="h5" className="mx-3" color="inherit">
                   How it Work
               </Link>
+              <Link href="/models/" variant="h5" className="mx-3" color="inherit">
+                  Models
+              </Link>
               <Link href="#" variant="h5" className="mx-3"  color="inherit">
                   FAQ
               </Link>

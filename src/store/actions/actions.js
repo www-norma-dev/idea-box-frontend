@@ -13,6 +13,18 @@ export function loadIdea (){
 	}
 }
 
+export function loadModel (){
+	return(dispatch)=>{
+
+		 return axios.get(process.env.REACT_APP_URL_API+'blog/').
+		 then(((response)=> {
+			 dispatch({
+				type:"GET_MODEL",
+				models : response.data.results
+			} )
+		 }))
+	}
+}
 
 
 export function AddIdea (form_data){
