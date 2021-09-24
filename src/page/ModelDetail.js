@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MainAppbar from "../Components/MainAppbar";
-import { Typography, Grid, MenuList, MenuItem, Box, Chip } from '@material-ui/core';
+import { Typography, Grid, MenuList, MenuItem, Chip } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
