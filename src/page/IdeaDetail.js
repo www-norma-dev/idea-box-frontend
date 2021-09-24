@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MainAppbar from "../Components/MainAppbar";
-import { Typography, Grid, MenuList, MenuItem, Link, TextField, Button, DialogActions } from '@material-ui/core';
+import { Typography, Grid, MenuList, MenuItem, Link, TextField, Button, DialogActions, Box } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -87,6 +87,10 @@ const IdeaDetail = (props) => {
 		const updateIdea = (data) => {
 			setIdea({ ...idea, ...data})
 		}
+		const updateLikes = () => {
+			setLike(true);
+			setIdea({ ...idea, 'likes': idea.likes + 1})
+		}
 
 		const validateFrom = () => {
 			if (email['email'] == '') {
@@ -142,10 +146,7 @@ const IdeaDetail = (props) => {
 			  updateComments();
 		},[ideaNumber])
 
-		const likeButton = () => {
-		  setLike(!like);
-		}
-
+		
     return (
         <div className={classes.root}>
             <MainAppbar/>
@@ -185,21 +186,21 @@ const IdeaDetail = (props) => {
 									<b>Status: </b>{ideaStatus}
 								</Typography>
 							</MenuItem>
-							<MenuItem>
-								<div dangerouslySetInnerHTML={{__html: '<iframe src="../../widget.html?apiUrl=https://api-inference.huggingface.co/models/roberta-large-mnli" width="500" height="600"></iframe>'}}></div>
-							</MenuItem>
 						</MenuList>
 						</Grid>
 					</Grid>
 				</CardContent>
 				<CardActions disableSpacing>
-					<IconButton aria-label="add to favorites" onClick={likeButton}>
-						{like ? (
-						<FavoriteIcon style={{ color: '#ff0505' }} />
-						) : (
-						<FavoriteIcon />
-						)}
-					</IconButton>
+					<Box>
+						<IconButton aria-label="add to favorites" onClick={updateLikes}>
+							{like ? (
+							<FavoriteIcon style={{ color: '#ff0505' }} />
+							) : (
+							<FavoriteIcon />
+							)}
+						</IconButton>
+						{ idea.likes }
+					</Box>
 					{ idea.title != null && 
 					<ModifieIdea title={idea.title}
 						description={idea.description} 

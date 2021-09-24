@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     ArrowRightAlt,
-    HeadsetMic,
  } from '@material-ui/icons';
 import {
     Button,
@@ -28,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     button: {
       color: "white",
     },
+    button_portfolio: {
+        color: "black",
+      },
     section: {
         marginTop: "50px",
     },
@@ -73,6 +75,18 @@ const Hero = () => {
                                     endIcon={<ArrowRightAlt />}
                                 >
                                     <b>{"Get Started"}</b>
+                                </Button>
+                            </div>
+                            <div className="mt-4">
+                                <Button
+                                    href="/list"
+                                    size="large" 
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.button_portfolio}
+                                    endIcon={<ArrowRightAlt />}
+                                >
+                                    <b>{"Have a look to the portfolio"}</b>
                                 </Button>
                             </div>
                         </div>

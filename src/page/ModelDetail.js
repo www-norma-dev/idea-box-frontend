@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MainAppbar from "../Components/MainAppbar";
-import { Typography, Grid, MenuList, MenuItem, Box, Chip } from '@material-ui/core';
+import { Typography, Grid, MenuList, MenuItem, Chip } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -57,7 +57,7 @@ const ModelDetail = (props) => {
 			  .catch(err => console.log(err));
 		},[modelNumber])
 		
-		useEffect (() =>  setIframe(`<iframe src="../../widget.html?apiUrl=${model.api_url}" width="500" height="600"></iframe>`)
+		useEffect (() =>  setIframe(`<iframe src="../../widget.html?apiUrl=${model.api_url}" width="500" height="500"></iframe>`)
 		,[model])
 
     return (
@@ -73,15 +73,19 @@ const ModelDetail = (props) => {
 				<CardContent>
 					<Grid container spacing={3}>
 						<Grid item xs={7}>
+							<Typography gutterBottom variant="h1" component="h1">
+								{model.title}
+							</Typography>
+
 							{
 								model.tags && model.tags.split(";").map((tag, index) =>
 									<Chip key={index} label={tag} 
 										style={{ marginRight: 10 , marginBottom: 15, backgroundColor: getRandomColor()}} />)
 								}	
-							<Typography gutterBottom variant="h2" component="h2">
-								{model.title}
+							<Typography gutterBottom variant="h3" component="h3">
+								{model.description}
 							</Typography>
-							<ReactMarkdown children={model.description} remarkPlugins={[remarkGfm]}  style={{  textAlign: "left"}}/>
+							<ReactMarkdown children={model.content} remarkPlugins={[remarkGfm]}  style={{  textAlign: "left"}}/>
 						</Grid>
 						<Grid item xs={5} style={{ minWidth: 200}}>
 						<MenuList>
