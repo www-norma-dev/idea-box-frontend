@@ -89,7 +89,14 @@ const IdeaDetail = (props) => {
 		}
 		const updateLikes = () => {
 			setLike(true);
+			const form_data = new FormData();
+			form_data.append('likes', idea.likes + 1);
+			console.log("like :", idea.likes, "id :", idea.id, "form_data :", form_data  )
 			setIdea({ ...idea, 'likes': idea.likes + 1})
+
+			if (idea.id){
+				props.ModifeIdea(form_data, idea.id)
+			  }
 		}
 
 		const validateFrom = () => {
@@ -146,6 +153,8 @@ const IdeaDetail = (props) => {
 			  updateComments();
 		},[ideaNumber])
 
+
+		useEffect( () =>  props.loadIdea(), [like, idea]);
 		
     return (
         <div className={classes.root}>
@@ -192,7 +201,7 @@ const IdeaDetail = (props) => {
 				</CardContent>
 				<CardActions disableSpacing>
 					<Box>
-						<IconButton aria-label="add to favorites" onClick={updateLikes}>
+						<IconButton aria-label="add to favorites" onClick={updateLikes} disabled={like}>
 							{like ? (
 							<FavoriteIcon style={{ color: '#ff0505' }} />
 							) : (
