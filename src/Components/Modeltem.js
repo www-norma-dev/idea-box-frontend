@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 1300,
+    width: '100%',
     height: 350,
     marginTop: 10,
     marginBottom: 10,
@@ -54,14 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ModelItem(props) {
   const classes = useStyles()
-  const [expanded, setExpanded] = React.useState(false)
   const history = useHistory();
-
-  const [like, setLike] = React.useState(false)
-
-  const likeButton = () => {
-    setLike(!like)
-  }
 
   const showDetail = () => {
     history.push("/model/"+ props.id);

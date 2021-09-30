@@ -45,7 +45,7 @@ export function AddIdea (form_data){
 
 export function ModifeIdea (form_data, ideaKey){
 	return(dispatch)=>{
-		return axios.put(process.env.REACT_APP_URL_API+'idea/'+ideaKey+"/", form_data, {
+		return axios.patch(process.env.REACT_APP_URL_API+'idea/'+ideaKey+"/", form_data, {
 			headers: {
 			'Content-Type': 'application/json',
 			},

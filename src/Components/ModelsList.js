@@ -26,7 +26,7 @@ const  ModelsList = (props) =>{
     const { t, i18n } = useTranslation();
 
     // fetch data from API
-    useEffect( () =>  {props.loadModel(); console.log("models: ", props.models)}, []);
+    useEffect( () =>  {props.loadModel();}, []);
 
     return (
         <div>

@@ -9,8 +9,8 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import * as actionCreatore from "../store/actions/actions";
 import {connect} from 'react-redux';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import ReactHtmlParser from 'react-html-parser';
+
 import {
 	BrowserRouter as Router,
 
@@ -63,7 +63,7 @@ const ModelDetail = (props) => {
     return (
         <div className={classes.root}>
             <MainAppbar/>
-			<Card className={classes.root} style={{marginLeft:250, marginRight: 200, marginTop:100}}>
+			<Card className={classes.root} style={{marginLeft:200, marginRight: 200, marginTop:100}}>
 				<CardMedia
 				component="img"
 				alt=""
@@ -85,7 +85,7 @@ const ModelDetail = (props) => {
 							<Typography gutterBottom variant="h3" component="h3">
 								{model.description}
 							</Typography>
-							<ReactMarkdown children={model.content} remarkPlugins={[remarkGfm]}  style={{  textAlign: "left"}}/>
+							 <div style={{  textAlign: "left"}}> { ReactHtmlParser(model.content) }</div>
 						</Grid>
 						<Grid item xs={5} style={{ minWidth: 200}}>
 						<MenuList>
