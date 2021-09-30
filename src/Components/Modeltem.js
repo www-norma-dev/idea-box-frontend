@@ -13,7 +13,7 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 1300,
+    width: '100%',
     height: 350,
     marginTop: 10,
     marginBottom: 10,

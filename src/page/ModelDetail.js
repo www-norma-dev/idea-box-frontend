@@ -9,8 +9,6 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import * as actionCreatore from "../store/actions/actions";
 import {connect} from 'react-redux';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import ReactHtmlParser from 'react-html-parser';
 
 import {
