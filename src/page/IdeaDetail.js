@@ -34,7 +34,7 @@ const Comment = (props) => {
 
 	const classes = useStyles();
 	return(
-		<Card className={classes.root} style={{marginLeft:250, marginRight: 200, marginTop:10}}>
+		<Card className={classes.root} style={{marginLeft:200, marginRight: 200, marginTop:10}}>
 			<CardContent>
                 <Typography component="h5" variant="h5">
                     {props.email} 
@@ -159,7 +159,7 @@ const IdeaDetail = (props) => {
     return (
         <div className={classes.root}>
             <MainAppbar/>
-			<Card className={classes.root} style={{marginLeft:250, marginRight: 200, marginTop:100}}>
+			<Card className={classes.root} style={{marginLeft:200, marginRight: 200, marginTop:100}}>
 				<CardMedia
 				component="img"
 				alt=""
@@ -225,7 +225,7 @@ const IdeaDetail = (props) => {
 								email={comment.email} 
 								date={comment.created_at}
 								key={index}/>))}
-			<Card className={classes.root} style={{marginLeft:250, marginRight: 200, marginTop:10}}>
+			<Card className={classes.root} style={{marginLeft:200, marginRight: 200, marginTop:10}}>
 				<CardContent>
 					<Grid container spacing={3}>
 						<Grid item xs={2}>

@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MainAppbar from "../Components/MainAppbar";
-import { Typography, Grid, MenuList, MenuItem, Chip } from '@material-ui/core';
+import { Typography, Grid, MenuList, MenuItem, Chip, Box } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import * as actionCreatore from "../store/actions/actions";
 import {connect} from 'react-redux';
 import ReactHtmlParser from 'react-html-parser';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import {
 	BrowserRouter as Router,
@@ -63,13 +65,17 @@ const ModelDetail = (props) => {
     return (
         <div className={classes.root}>
             <MainAppbar/>
-			<Card className={classes.root} style={{marginLeft:200, marginRight: 200, marginTop:100}}>
+			<Card className={classes.root} style={{marginLeft:20, marginRight: 20, marginTop:100}}>
+				
+			<Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
 				<CardMedia
 				component="img"
 				alt=""
-				height="400"
+				height="100"
+				style={{ objectFit: "contain" }}
 				image= { (model.files == "" || model.files== null)  ? "https://source.unsplash.com/random" : model.files}
 				/>
+				</Box>
 				<CardContent>
 					<Grid container spacing={3}>
 						<Grid item xs={7}>
@@ -85,7 +91,7 @@ const ModelDetail = (props) => {
 							<Typography gutterBottom variant="h3" component="h3">
 								{model.description}
 							</Typography>
-							 <div style={{  textAlign: "left"}}> { ReactHtmlParser(model.content) }</div>
+							<ReactMarkdown children={model.content} remarkPlugins={[remarkGfm]}  style={{  textAlign: "left"}}/>
 						</Grid>
 						<Grid item xs={5} style={{ minWidth: 200}}>
 						<MenuList>
