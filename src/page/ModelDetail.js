@@ -59,7 +59,7 @@ const ModelDetail = (props) => {
 			  .catch(err => console.log(err));
 		},[modelNumber])
 		
-		useEffect (() =>  setIframe(`<iframe src="../../widget.html?apiUrl=${model.api_url}" width="500" height="500"></iframe>`)
+		useEffect (() =>  setIframe(`<iframe src="../../widget.html?apiUrl=${model.api_url}" width="500" height="600"></iframe>`)
 		,[model])
 
     return (
@@ -94,8 +94,10 @@ const ModelDetail = (props) => {
 						<MenuList>
 							{
 								model.api_url != null && 
-								<MenuItem>
-									<div dangerouslySetInnerHTML={{__html: iframe}}></div>
+								<MenuItem justify="flex-end">
+									<Grid container justify="flex-end">
+										<div dangerouslySetInnerHTML={{__html: iframe}}></div>
+									</Grid>
 								</MenuItem>
 							}
 						</MenuList>
