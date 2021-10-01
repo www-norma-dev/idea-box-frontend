@@ -164,6 +164,7 @@ const IdeaDetail = (props) => {
 				component="img"
 				alt=""
 				height="400"
+				style={{ objectFit: "contain" }}
 				image= { (idea.files == "" || idea.files== null)  ? "https://source.unsplash.com/random" : idea.files}
 				/>
 				<CardContent>

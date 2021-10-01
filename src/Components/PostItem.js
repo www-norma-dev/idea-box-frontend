@@ -65,6 +65,7 @@ export default function PostItem(props) {
       <Card className={classes.root}>
         <CardActionArea onClick={showDetail}>
           <CardMedia
+				    style={{ objectFit: "contain" }}
             className={classes.media}
             image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
             title={props.title}

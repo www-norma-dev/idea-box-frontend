@@ -66,8 +66,6 @@ const ModelDetail = (props) => {
         <div className={classes.root}>
             <MainAppbar/>
 			<Card className={classes.root} style={{marginLeft:20, marginRight: 20, marginTop:100}}>
-				
-			<Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
 				<CardMedia
 				component="img"
 				alt=""
@@ -75,7 +73,6 @@ const ModelDetail = (props) => {
 				style={{ objectFit: "contain" }}
 				image= { (model.files == "" || model.files== null)  ? "https://source.unsplash.com/random" : model.files}
 				/>
-				</Box>
 				<CardContent>
 					<Grid container spacing={3}>
 						<Grid item xs={7}>

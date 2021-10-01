@@ -67,6 +67,7 @@ export default function ModelItem(props) {
         <CardActionArea onClick={showDetail}>
           <CardMedia
             className={classes.media}
+            style={{ objectFit: "contain" }}
             image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
             title={props.title}
           />
