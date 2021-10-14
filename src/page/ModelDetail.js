@@ -66,13 +66,7 @@ const ModelDetail = (props) => {
         <div className={classes.root}>
             <MainAppbar/>
 			<Card className={classes.root} style={{marginLeft:20, marginRight: 20, marginTop:100}}>
-				<CardMedia
-				component="img"
-				alt=""
-				height="100"
-				style={{ objectFit: "contain" }}
-				image= { (model.files == "" || model.files== null)  ? "https://source.unsplash.com/random" : model.files}
-				/>
+
 				<CardContent>
 					<Grid container spacing={3}>
 						<Grid item xs={7}>
@@ -97,6 +91,14 @@ const ModelDetail = (props) => {
 								<MenuItem justify="flex-end">
 									<Grid container justify="flex-end">
 										<div dangerouslySetInnerHTML={{__html: iframe}}></div>
+									</Grid>
+								</MenuItem>
+							}
+							{
+								model.html_rapport != null && 
+								<MenuItem >
+									<Grid >
+										<a href={model.html_rapport} target="_blank">Consultez le rapport</a>
 									</Grid>
 								</MenuItem>
 							}
