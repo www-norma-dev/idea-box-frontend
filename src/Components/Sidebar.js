@@ -115,16 +115,20 @@ const Sidebar = ({ open, setOpen }) => {
         </div>
         <Divider />
         <List>
-          {['List','Models'].map((text, index) => (
-            <Link to={'/' + text} key={text}>
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <InboxIcon />}
+          <Link to='/list' key='list'>
+            <ListItem button key='list'>
+              <ListItemIcon>
                 </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            </Link>
-          ))}
+              <ListItemText primary="Vos idées"/>
+            </ListItem>
+          </Link>
+          <Link to='/models' key='models'>
+            <ListItem button key='models'>
+              <ListItemIcon>
+                </ListItemIcon>
+              <ListItemText primary="Nos modèles"/>
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
     </div>

@@ -77,7 +77,7 @@ const ModelDetail = (props) => {
 							{
 								model.tags && model.tags.split(";").map((tag, index) =>
 									<Chip key={index} label={tag} 
-										style={{ marginRight: 10 , marginBottom: 15, backgroundColor: getRandomColor()}} />)
+										style={{ marginRight: 10 , marginBottom: 15 }} />)
 								}	
 							<Typography gutterBottom variant="h3" component="h3">
 								{model.description}
