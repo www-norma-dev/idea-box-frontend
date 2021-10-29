@@ -51,10 +51,10 @@ export default function ModelItem(props) {
   return (
     <Grid item md={12}>
       <div className="row bg-white m-3 rounded p-2" onClick={showDetail} style={{ cursor: "pointer" }} >
-        <div className="col-md-2">
+        <div className="col-md-1">
           <Typography color="textSecondary">{props.date}</Typography>
         </div>
-        <div className="col-md-7">
+        <div className="col-md-8">
           <Typography variant="h2">{props.title}</Typography>
           {
 								props.tags && props.tags.split(";").map((tag, index) =>

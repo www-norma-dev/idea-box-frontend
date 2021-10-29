@@ -51,6 +51,7 @@ const  ModelsList = (props) =>{
                             img={option.files} 
                             title={option.title} 
                             description={option.description} 
+                            date={option.date} 
                             tags={option.tags}
                             api_url={option.api_url} />
                         ))}
