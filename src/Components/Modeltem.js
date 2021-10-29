@@ -1,12 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import {
-  Box,
+  Chip,
   CardMedia,
   CardContent,
   Card,
   Typography,
   Grid,
+  IconButton,
   CardActionArea
  } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
@@ -19,20 +20,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10,
     marginLeft: 27,
     textAlign: 'start',
-  },
-  media: {
-    height: 0,
-    paddingTop: '20%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
   },
   avatar: {
     backgroundColor: theme.palette.primary.main,
@@ -63,21 +50,22 @@ export default function ModelItem(props) {
 
   return (
     <Grid item md={12}>
-      <Card className={classes.root}>
-        <CardActionArea onClick={showDetail}>
-          <CardMedia
-            className={classes.media}
-            style={{ objectFit: "contain" }}
-            image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
-            title={props.title}
-          />
-          <CardContent>
-            <Typography variant="h2">{props.title}</Typography>
-            <Typography
+      <div className="row bg-white m-3 rounded p-2" onClick={showDetail} style={{ cursor: "pointer" }} >
+        <div className="col-md-1">
+          <Typography color="textSecondary">{props.date}</Typography>
+        </div>
+        <div className="col-md-8">
+          <Typography variant="h2">{props.title}</Typography>
+          {
+								props.tags && props.tags.split(";").map((tag, index) =>
+									<Chip key={index} label={tag} 
+										style={{ marginRight: 5 , marginBottom: 5 }} />)
+					}	
+          <Typography
               variant="body"
               align="left"
-              component="h6"
-			        style={{overflow: "hidden", textOverflow: "ellipsis",height: '100px' ,  whiteSpace: "pre-line", marginTop: "20px" }}
+              component="p"
+			        style={{overflow: "hidden", height: '150px' ,  whiteSpace: "pre-line", marginTop: "20px" }}
             >
               {props.description}
             </Typography>
@@ -85,9 +73,16 @@ export default function ModelItem(props) {
             <div className=" mt-5 d-flex justify-content-between align-items-end m-auto">
             <Typography color="textSecondary">{props.date}</Typography>
         </div>
-          </CardContent>
-        </CardActionArea>    
-      </Card>
+        </div>
+        <div  className="col-md-3">
+          <CardMedia
+            className="h-100"
+            style={{ objectFit: "contain" }}
+            image={props.img ==null ?  "https://source.unsplash.com/random" : props.img }
+            title={props.title}
+          />
+        </div>
+      </div>
     </Grid>
   )
 }
